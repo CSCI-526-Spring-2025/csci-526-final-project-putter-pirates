@@ -17,6 +17,8 @@ public class Tile : MonoBehaviour
     void Update()
     {
         if(!gc.GetComponent<GameController>().isRotateState) return;
+
+        // if the mouse clicked on the tile's collider, then rotate the tile
         if(Input.GetMouseButtonDown(0)) {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if(collider2d.OverlapPoint(mousePosition)) {

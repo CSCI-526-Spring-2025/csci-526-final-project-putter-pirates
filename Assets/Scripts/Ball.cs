@@ -8,23 +8,21 @@ public class Ball : MonoBehaviour
     public GameObject shadow;
 
     GameObject triangle;
-    GameObject gc;
     GameObject lastpath;
     Rigidbody2D rb;
     Vector3 ms_down_pos;
-    Vector2 original_pos;
-    bool freezed = false;
+    Vector3 startPosition;
+    bool freezed = false;  // if the ball goes into the hole, it won't came back
     bool shooted = false;
 
     void Start()
     {
-        gc = GameObject.Find("GameController");
         lastpath = GameObject.Find("LastPath");
+        triangle = transform.Find("Triangle").gameObject;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
-        triangle = transform.Find("Triangle").gameObject;
+
         triangle.SetActive(false);
-        original_pos = transform.position;
     }
 
     void Update()
@@ -37,9 +35,11 @@ public class Ball : MonoBehaviour
         }
 
         if(Input.GetMouseButtonDown(0)){
+            // when the mouse is down, we record the start position
             ms_down_pos = Input.mousePosition;
         }
 
+        // calculate the direction and magnitude of shooting
         Vector2 dir, dist;
         float meg, ag;
         dist = ms_down_pos - Input.mousePosition;
@@ -49,17 +49,24 @@ public class Ball : MonoBehaviour
         if(meg > 0.4) meg = 0.4f;
 
         if(Input.GetMouseButtonUp(0)){
+            // if the mouse is released, we use the direction and magnitude to shoot the ball
             triangle.SetActive(false);
             rb.linearVelocity = dir * meg * shoot_speed;
             shooted = true;
             lastpath.GetComponent<LastPath>().StartRecording();
         }
         else if(Input.GetMouseButton(0)){
+            // if the mouse is held, we use the direction and magnitude to transform that triangle
             triangle.SetActive(true);
             triangle.transform.localScale = new Vector3(1, meg * 20, 1);
             triangle.transform.rotation = Quaternion.Euler(0,0,ag);
             triangle.GetComponent<SpriteRenderer>().color = new Color(meg/0.5f, 0, 1-meg/0.5f, 0.5f);
         }
+    }
+
+    public void SetStartPosition(Vector3 pos)
+    {
+        startPosition = pos;
     }
 
     public void Freeze()
@@ -70,7 +77,7 @@ public class Ball : MonoBehaviour
 
     public void ResetPosition()
     {
-        transform.position = original_pos;
+        transform.position = startPosition;
         rb.linearVelocity = Vector2.zero;
         shooted = false;
         freezed = false;

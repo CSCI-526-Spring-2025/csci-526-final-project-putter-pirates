@@ -3,7 +3,7 @@ using UnityEngine;
 public class LastPath : MonoBehaviour
 {
     public GameObject dot;
-    public bool recording = false;
+    public bool recording = false;  // only instantiate dots when recording is on
     GameObject ball;
     Vector2 lastPosition;
     float lastTime;
@@ -24,6 +24,7 @@ public class LastPath : MonoBehaviour
     {
         if(!recording) return;
 
+        // if distance and time difference from last dot are both large enough, we draw a new dot
         if(Vector2.Distance(lastPosition, ball.transform.position) > minDotDistance && Time.time-lastTime > timeDistance) {
             GameObject newDot = Instantiate(dot, gameObject.transform);
             newDot.transform.position = ball.transform.position;
