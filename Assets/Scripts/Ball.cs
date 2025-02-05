@@ -5,9 +5,11 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public float shoot_speed = 50;
+    public GameObject shadow;
 
     GameObject triangle;
     GameObject gc;
+    GameObject lastpath;
     Rigidbody2D rb;
     Vector3 ms_down_pos;
     Vector2 original_pos;
@@ -16,9 +18,10 @@ public class Ball : MonoBehaviour
 
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-
         gc = GameObject.Find("GameController");
+        lastpath = GameObject.Find("LastPath");
+
+        rb = gameObject.GetComponent<Rigidbody2D>();
         triangle = transform.Find("Triangle").gameObject;
         triangle.SetActive(false);
         original_pos = transform.position;
@@ -49,6 +52,7 @@ public class Ball : MonoBehaviour
             triangle.SetActive(false);
             rb.linearVelocity = dir * meg * shoot_speed;
             shooted = true;
+            lastpath.GetComponent<LastPath>().StartRecording();
         }
         else if(Input.GetMouseButton(0)){
             triangle.SetActive(true);
@@ -70,5 +74,6 @@ public class Ball : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         shooted = false;
         freezed = false;
+        lastpath.GetComponent<LastPath>().StopRecording();
     }
 }
