@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
     GameObject ball;        // in "rotate state", the fakeball without physics would be activated (to prevent falling), 
     GameObject fakeBall;    // in "play state" the real ball with physics would be activated
     GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
+    GameObject goalEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,10 +14,12 @@ public class GameController : MonoBehaviour
         ball = GameObject.Find("Ball");
         fakeBall = GameObject.Find("FakeBall");
         topLayer = GameObject.Find("TopLayer");
+        goalEffect = GameObject.Find("GoalEffect");
 
         ball.SetActive(!isRotateState);
         fakeBall.SetActive(isRotateState);
         topLayer.SetActive(isRotateState);
+        goalEffect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,5 +50,6 @@ public class GameController : MonoBehaviour
     {
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
+        goalEffect.SetActive(true);
     }
 }
