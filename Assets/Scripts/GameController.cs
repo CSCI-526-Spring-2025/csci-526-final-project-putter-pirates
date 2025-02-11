@@ -26,24 +26,10 @@ public class GameController : MonoBehaviour
     void Update()
     {
         // the state is toggled with Space
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isRotateState = !isRotateState;
-            Debug.Log("isRotateState: " + isRotateState);
-
-            ball.SetActive(!isRotateState);
-            ball.transform.position = fakeBall.transform.position;
-            ball.GetComponent<Ball>().SetStartPosition(ball.transform.position);
-            ball.GetComponent<Ball>().ResetPosition();
-            fakeBall.SetActive(isRotateState);
-            topLayer.SetActive(isRotateState);
-        }
+        if(Input.GetKeyDown(KeyCode.Space)) ToggleState();
 
         // R key resets the ball
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            ball.GetComponent<Ball>().ResetPosition();
-        }
+        if(Input.GetKeyDown(KeyCode.R)) ResetLevel();
     }
 
     public void Sucess()
@@ -51,5 +37,25 @@ public class GameController : MonoBehaviour
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
         goalEffect.SetActive(true);
+    }
+
+    public void ToggleState()
+    {
+        isRotateState = !isRotateState;
+        Debug.Log("isRotateState: " + isRotateState);
+
+        ball.SetActive(!isRotateState);
+        ball.transform.position = fakeBall.transform.position;
+        ball.GetComponent<Ball>().SetStartPosition(ball.transform.position);
+        ball.GetComponent<Ball>().ResetPosition();
+        fakeBall.SetActive(isRotateState);
+        topLayer.SetActive(isRotateState);
+    }
+
+    public void ResetLevel()
+    {
+        ball.GetComponent<Ball>().ResetPosition();
+        goalEffect.GetComponent<ParticleSystem>().Clear();
+        goalEffect.SetActive(false);
     }
 }
