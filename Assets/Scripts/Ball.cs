@@ -21,6 +21,7 @@ public class Ball : MonoBehaviour
         triangle = transform.Find("Triangle").gameObject;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0; // prevent the ball from falling before shoot
 
         triangle.SetActive(false);
     }
@@ -51,6 +52,7 @@ public class Ball : MonoBehaviour
         if(Input.GetMouseButtonUp(0)){
             // if the mouse is released, we use the direction and magnitude to shoot the ball
             triangle.SetActive(false);
+            rb.gravityScale = 1.5f;
             rb.linearVelocity = dir * meg * shoot_speed;
             shooted = true;
             lastpath.GetComponent<LastPath>().StartRecording();
@@ -79,6 +81,7 @@ public class Ball : MonoBehaviour
     {
         transform.position = startPosition;
         rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0;
         shooted = false;
         freezed = false;
         lastpath.GetComponent<LastPath>().StopRecording();
