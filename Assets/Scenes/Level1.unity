@@ -2286,7 +2286,7 @@ AreaEffector2D:
   m_UseGlobalAngle: 0
   m_ForceAngle: 90
   m_ForceMagnitude: 400
-  m_ForceVariation: 0
+  m_ForceVariation: -10
   m_ForceTarget: 0
   m_Drag: 2
   m_AngularDrag: 0
@@ -3460,7 +3460,7 @@ AreaEffector2D:
   m_UseGlobalAngle: 0
   m_ForceAngle: 90
   m_ForceMagnitude: 200
-  m_ForceVariation: 0
+  m_ForceVariation: -10
   m_ForceTarget: 0
   m_Drag: 0
   m_AngularDrag: 0
@@ -4095,7 +4095,7 @@ AreaEffector2D:
   m_UseGlobalAngle: 0
   m_ForceAngle: 90
   m_ForceMagnitude: 300
-  m_ForceVariation: 0
+  m_ForceVariation: 5
   m_ForceTarget: 0
   m_Drag: 1
   m_AngularDrag: 0
