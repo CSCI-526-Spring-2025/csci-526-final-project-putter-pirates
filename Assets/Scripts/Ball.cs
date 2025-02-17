@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Ball : MonoBehaviour
@@ -14,6 +13,7 @@ public class Ball : MonoBehaviour
     Vector3 startPosition;
     bool freezed = false;  // if the ball goes into the hole, it won't came back
     bool shooted = false;
+    float smallVelocityContinuousTime = 0;
 
     void Start()
     {
@@ -28,14 +28,22 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        if(freezed) return;
-        if(shooted) 
+        if (freezed) return;
+        if (shooted)
         {
-            if(rb.linearVelocity.magnitude < 0.2) ResetPosition();
+            if (rb.linearVelocity.magnitude < 0.2)
+            {
+                smallVelocityContinuousTime += Time.deltaTime;
+                // if the velocity is low for more than 0.2 seconds, reset position
+                if (smallVelocityContinuousTime > 0.2) ResetPosition();
+            }
+            else smallVelocityContinuousTime = 0;
             return;
         }
 
-        if(Input.GetMouseButtonDown(0)){
+        rb.linearVelocity = Vector2.zero;
+        if (Input.GetMouseButtonDown(0))
+        {
             // when the mouse is down, we record the start position
             ms_down_pos = Input.mousePosition;
         }
@@ -46,23 +54,26 @@ public class Ball : MonoBehaviour
         dist = ms_down_pos - Input.mousePosition;
         dir = dist.normalized;
         meg = dist.magnitude / ((Screen.width + Screen.height) / 2);
-        ag = Mathf.Acos(dir.x) * 180 / Mathf.PI * (dir.y>0?1:-1) - 90;
-        if(meg > 0.4) meg = 0.4f;
+        ag = Mathf.Acos(dir.x) * 180 / Mathf.PI * (dir.y > 0 ? 1 : -1) - 90;
+        if (meg > 0.4) meg = 0.4f;
 
-        if(Input.GetMouseButtonUp(0)){
+        if (Input.GetMouseButtonUp(0))
+        {
             // if the mouse is released, we use the direction and magnitude to shoot the ball
+            if (meg < 0.1) return; // if the force is too weak, then don't shoot
             triangle.SetActive(false);
             rb.gravityScale = 1.5f;
-            rb.linearVelocity = dir * meg * shoot_speed;
+            rb.linearVelocity = meg * shoot_speed * dir;
             shooted = true;
             lastpath.GetComponent<LastPath>().StartRecording();
         }
-        else if(Input.GetMouseButton(0)){
+        else if (Input.GetMouseButton(0))
+        {
             // if the mouse is held, we use the direction and magnitude to transform that triangle
             triangle.SetActive(true);
             triangle.transform.localScale = new Vector3(1, meg * 20, 1);
-            triangle.transform.rotation = Quaternion.Euler(0,0,ag);
-            triangle.GetComponent<SpriteRenderer>().color = new Color(meg/0.5f, 0, 1-meg/0.5f, 0.5f);
+            triangle.transform.rotation = Quaternion.Euler(0, 0, ag);
+            triangle.GetComponent<SpriteRenderer>().color = new Color(meg / 0.5f, 0, 1 - meg / 0.5f, 0.5f);
         }
     }
 
