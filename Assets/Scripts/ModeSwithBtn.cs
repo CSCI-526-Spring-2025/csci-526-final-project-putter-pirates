@@ -15,6 +15,6 @@ public class ModeSwithBtn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textMeshPro.text = !gc.isRotateState ? "Rotate State" : "Play State";
+        textMeshPro.text = gc.isRotateState ? "Rotate" : "Play";
     }
 }
