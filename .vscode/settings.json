@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "paired-prototype-spring-25-tuesday-team-12.sln"
+    "dotnet.defaultSolution": "csci-526-final-project-putter-pirates.sln"
 }

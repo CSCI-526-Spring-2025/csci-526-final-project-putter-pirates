@@ -10,7 +10,6 @@ public class ElectricityManagementLevel3 : MonoBehaviour
     public GameObject[] wireT3;
     public GameObject[] doorT0;
     public GameObject[] doorT2;
-    GameController gameController;
     ElectricityButton electricityButton;
     GameObject tile0;
     GameObject tile1;
@@ -20,7 +19,6 @@ public class ElectricityManagementLevel3 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         electricityButton = GameObject.Find("ElectricityButton").GetComponent<ElectricityButton>();
         tile0 = GameObject.Find("Tile (0)");
         tile1 = GameObject.Find("Tile (1)");
@@ -38,7 +36,7 @@ public class ElectricityManagementLevel3 : MonoBehaviour
         float t2r = tile2.transform.rotation.eulerAngles.z;
         float t3r = tile3.transform.rotation.eulerAngles.z;
         // T0
-        foreach(GameObject gb in windT0) SetWindPowered(gb, t0r == 0);
+        foreach(GameObject gb in windT0) SetWindPowered(gb, t0r == 0 || t0r == 180);
         foreach(GameObject gb in doorT0) SetDoorPowered(gb, t0r == 0);
 
         // T1

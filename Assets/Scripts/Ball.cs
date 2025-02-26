@@ -11,12 +11,14 @@ public class Ball : MonoBehaviour
     Rigidbody2D rb;
     Vector3 ms_down_pos;
     Vector3 startPosition;
+    GameController gameController;
     bool freezed = false;  // if the ball goes into the hole, it won't came back
     bool shooted = false;
     float smallVelocityContinuousTime = 0;
 
     void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         lastpath = GameObject.Find("LastPath");
         triangle = transform.Find("Triangle").gameObject;
 
@@ -35,7 +37,7 @@ public class Ball : MonoBehaviour
             {
                 smallVelocityContinuousTime += Time.deltaTime;
                 // if the velocity is low for more than 0.2 seconds, reset position
-                if (smallVelocityContinuousTime > 0.2) ResetPosition();
+                if (smallVelocityContinuousTime > 0.2) gameController.ResetLevel();
             }
             else smallVelocityContinuousTime = 0;
             return;
