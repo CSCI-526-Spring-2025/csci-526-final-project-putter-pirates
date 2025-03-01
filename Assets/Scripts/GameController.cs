@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     GameObject fakeBall;    // in "play state" the real ball with physics would be activated
     GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
     GameObject goalEffect;
+    GameObject goal;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
         fakeBall = GameObject.Find("FakeBall");
         topLayer = GameObject.Find("TopLayer");
         goalEffect = GameObject.Find("GoalEffect");
+        goal = GameObject.Find("Goal");
 
         ball.SetActive(!isRotateState);
         fakeBall.SetActive(isRotateState);
@@ -27,7 +29,11 @@ public class GameController : MonoBehaviour
     void Update()
     {
         // the state is toggled with Space
-        if(Input.GetKeyDown(KeyCode.Space)) ToggleState();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            goal.GetComponent<Goal>().flipFreeze();
+            ToggleState();
+        }
 
         // R key resets the ball
         if(Input.GetKeyDown(KeyCode.R)) ResetLevel();
