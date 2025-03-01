@@ -1234,6 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dedce2228d9940e8816d4893e6fedce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNum: 0
 --- !u!4 &517129382
 Transform:
   m_ObjectHideFlags: 0
@@ -1936,6 +1937,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gc: {fileID: 0}
+  rb: {fileID: 0}
+  isDynamic: 0
+  freeze: 1
 --- !u!61 &720770610
 BoxCollider2D:
   m_ObjectHideFlags: 0
