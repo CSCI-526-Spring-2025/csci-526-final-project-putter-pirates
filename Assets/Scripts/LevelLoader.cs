@@ -14,6 +14,10 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(5);
+
+        if (Input.GetKeyDown(KeyCode.Alpha4)) LoadLevel(4);
+
         if (Input.GetKeyDown(KeyCode.Alpha3)) LoadLevel(3);
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) LoadLevel(2);
@@ -59,7 +63,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadPrev()
     {
         levelNum--;
-        string name = "scene" + levelNum.ToString();
+        string name = "Level" + levelNum.ToString();
         SceneManager.LoadScene(name);
 
     }
