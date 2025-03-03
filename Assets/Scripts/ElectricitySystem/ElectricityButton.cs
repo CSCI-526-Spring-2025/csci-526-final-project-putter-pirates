@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ElectricityButton : MonoBehaviour
@@ -5,9 +6,14 @@ public class ElectricityButton : MonoBehaviour
     public GameObject unpressedCap;
     public GameObject pressedCap;
     public bool pressed = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    ElectricityComponent electricityComponent;
+    ElectricityManager electricityManager;
+
     void Start()
     {
+        electricityManager = GameObject.Find("ElectricityManager").GetComponent<ElectricityManager>();
+        electricityComponent = transform.Find("ElectricityTrigger").GetComponent<ElectricityComponent>();
+        electricityComponent.isWire = false;
         ResetButton();
     }
 
@@ -24,6 +30,10 @@ public class ElectricityButton : MonoBehaviour
             pressed = true;
             unpressedCap.SetActive(!pressed);
             pressedCap.SetActive(pressed);
+            electricityManager.RegisterElectricitySource(electricityComponent);
+            electricityComponent.isCharged = true;
+            electricityComponent.isEndPoint = false;
+            electricityComponent.isSource = true;
             Debug.Log("Button Pressed!");
         }
     }
@@ -33,5 +43,10 @@ public class ElectricityButton : MonoBehaviour
         pressed = false;
         unpressedCap.SetActive(!pressed);
         pressedCap.SetActive(pressed);
+
+        electricityComponent.isCharged = false;
+        electricityComponent.isEndPoint = true;
+        electricityComponent.isSource = false;
+        electricityManager.RemoveElectricitySource(electricityComponent);
     }
 }
