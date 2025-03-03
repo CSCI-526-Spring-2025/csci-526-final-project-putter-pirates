@@ -46,6 +46,8 @@ public class GameController : MonoBehaviour
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
         goalEffect.SetActive(true);
+
+        GameAnalytics.instance.AppendShotData();
     }
 
     public void ToggleState()
