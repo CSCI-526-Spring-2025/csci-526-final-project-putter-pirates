@@ -14,6 +14,14 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(9);
+
+        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(8);
+        
+        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(7);
+        
+        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(6);
+        
         if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(5);
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) LoadLevel(4);
