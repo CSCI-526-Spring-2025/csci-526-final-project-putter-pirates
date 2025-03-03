@@ -68,6 +68,7 @@ public class Ball : MonoBehaviour
             rb.linearVelocity = meg * shoot_speed * dir;
             shooted = true;
             lastpath.GetComponent<LastPath>().StartRecording();
+            GameAnalytics.instance.TrackShot();
         }
         else if (Input.GetMouseButton(0))
         {
