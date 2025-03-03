@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class ElectricityButton : MonoBehaviour
@@ -14,6 +13,7 @@ public class ElectricityButton : MonoBehaviour
         electricityManager = GameObject.Find("ElectricityManager").GetComponent<ElectricityManager>();
         electricityComponent = transform.Find("ElectricityTrigger").GetComponent<ElectricityComponent>();
         electricityComponent.isWire = false;
+        electricityManager.RegisterElectricityButton(this);
         ResetButton();
     }
 

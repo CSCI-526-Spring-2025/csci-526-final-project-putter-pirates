@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
     GameObject goalEffect;
     GameObject goal;
-    ElectricityButton electricityButton;
+    ElectricityManager electricityManager = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +19,11 @@ public class GameController : MonoBehaviour
         topLayer = GameObject.Find("TopLayer");
         goalEffect = GameObject.Find("GoalEffect");
         goal = GameObject.Find("Goal");
-        electricityButton = GameObject.Find("ElectricityButton").GetComponent<ElectricityButton>();
+
+        if(GameObject.Find("ElectricityManager") != null)
+        {
+            electricityManager = GameObject.Find("ElectricityManager").GetComponent<ElectricityManager>();
+        }
 
         ball.SetActive(!isRotateState);
         fakeBall.SetActive(isRotateState);
@@ -68,6 +72,6 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().ResetPosition();
         goalEffect.GetComponent<ParticleSystem>().Clear();
         goalEffect.SetActive(false);
-        electricityButton.ResetButton();
+        if(electricityManager != null) electricityManager.ResetButtons();
     }
 }

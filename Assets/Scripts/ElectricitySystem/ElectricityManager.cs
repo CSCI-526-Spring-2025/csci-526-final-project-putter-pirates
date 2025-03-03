@@ -4,9 +4,11 @@ using UnityEngine;
 public class ElectricityManager : MonoBehaviour
 {
     [SerializeField]
-    List<ElectricityComponent> ElectricityComponents;
+    List<ElectricityComponent> electricityComponents;
     [SerializeField]
-    List<ElectricityComponent> ElectricitySources;
+    List<ElectricityComponent> electricitySources;
+    [SerializeField]
+    List<ElectricityButton> electricityButtons;
     bool refreshmentScheduled;
 
     void Start()
@@ -18,34 +20,48 @@ public class ElectricityManager : MonoBehaviour
     {
         if(refreshmentScheduled)
         {
-            foreach(ElectricityComponent ec in ElectricityComponents) ec.isCharged = false;
-            foreach(ElectricityComponent ec in ElectricitySources) ec.isCharged = false;
-            foreach(ElectricityComponent ec in ElectricitySources) ec.chargeAndPropagate();
+            foreach(ElectricityComponent ec in electricityComponents) ec.isCharged = false;
+            foreach(ElectricityComponent ec in electricitySources) ec.isCharged = false;
+            foreach(ElectricityComponent ec in electricitySources) ec.chargeAndPropagate();
             refreshmentScheduled = false;
         }
     }
 
     public void RegisterElectricityComponent(ElectricityComponent ec)
     {
-        ElectricityComponents.Add(ec);
+        electricityComponents.Add(ec);
         ScheduleElectricityRefreshment();
     }
 
     public void RegisterElectricitySource(ElectricityComponent ec)
     {
-        ElectricitySources.Add(ec);
+        electricitySources.Add(ec);
         ScheduleElectricityRefreshment();
     }
 
     public void RemoveElectricitySource(ElectricityComponent ec)
     {
-        if(!ElectricitySources.Contains(ec)) return;
-        ElectricitySources.Remove(ec);
+        if(!electricitySources.Contains(ec)) return;
+        electricitySources.Remove(ec);
         ScheduleElectricityRefreshment();
+    }
+
+    public void RegisterElectricityButton(ElectricityButton eb)
+    {
+        electricityButtons.Add(eb);
+        // ScheduleElectricityRefreshment();
     }
 
     public void ScheduleElectricityRefreshment()
     {
         refreshmentScheduled = true;
+    }
+
+    public void ResetButtons()
+    {
+        foreach(ElectricityButton eb in electricityButtons)
+        {
+            eb.ResetButton();
+        }
     }
 }
