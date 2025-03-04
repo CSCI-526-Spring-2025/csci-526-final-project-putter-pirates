@@ -2323,8 +2323,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036ee88140ccc4ea897245d9d52de264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ElectricityComponents: []
-  ElectricitySources: []
+  electricityComponents: []
+  electricitySources: []
+  electricityButtons: []
 --- !u!1 &450798528
 GameObject:
   m_ObjectHideFlags: 0
@@ -9754,7 +9755,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1472282053}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: ToggleState
         m_Mode: 1
