@@ -3,83 +3,51 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    public const int level0Index = 0;
     public int levelNum;
+    public bool isLevel0;
+    public bool isLastLevel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        string name = SceneManager.GetActiveScene().name;
-        levelNum = name[name.Length - 1] - '0';
+        levelNum = SceneManager.GetActiveScene().buildIndex - level0Index;
+        isLevel0 = levelNum == level0Index;
+        isLastLevel = SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings-1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(9);
-
-        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(8);
-        
-        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(7);
-        
-        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(6);
-        
-        if (Input.GetKeyDown(KeyCode.Alpha5)) LoadLevel(5);
-
-        if (Input.GetKeyDown(KeyCode.Alpha4)) LoadLevel(4);
-
-        if (Input.GetKeyDown(KeyCode.Alpha3)) LoadLevel(3);
-
-        if (Input.GetKeyDown(KeyCode.Alpha2)) LoadLevel(2);
-
-        if (Input.GetKeyDown(KeyCode.Alpha1)) LoadLevel(1);
-
-        if (Input.GetKeyDown(KeyCode.Alpha0)) LoadLevel(0);
+        for (int i=0;i<10;i++)
+        {
+            if (Input.GetKeyDown(i.ToString())) LoadLevel(level0Index+i);
+        }
 
         if (Input.GetKeyDown(KeyCode.W)) CompleteResetLevel();
 
     }
 
-    public void LoadLevel1()
+    public void LoadLevel(int level, bool withOffset = true)
     {
-        SceneManager.LoadScene("Level1");
-    }
-
-    public void LoadLevel0()
-    {
-        SceneManager.LoadScene("Level0");
-    }
-
-    public void LoadLevel2()
-    {
-        SceneManager.LoadScene("Level2");
-    }
-
-    public void LoadLevel(int level)
-    {
-        levelNum = level;
-        string name = "Level" + level.ToString();
-        SceneManager.LoadScene(name);
+        if(withOffset) SceneManager.LoadScene(level + level0Index);
+        else SceneManager.LoadScene(level);
     }
 
     public void LoadNext()
     {
-        levelNum++;
-        string name = "Level" + levelNum.ToString();
-        SceneManager.LoadScene(name);
-        
+        if(isLastLevel) return;
+        LoadLevel(levelNum+1);
     }
 
     public void LoadPrev()
     {
-        levelNum--;
-        string name = "Level" + levelNum.ToString();
-        SceneManager.LoadScene(name);
-
+        if(isLevel0) return;
+        LoadLevel(levelNum-1);
     }
 
     // move tiles back to starting orientation
     public void CompleteResetLevel()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
