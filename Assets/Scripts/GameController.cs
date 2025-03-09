@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameController : MonoBehaviour
     GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
     GameObject goalEffect;
     GameObject goal;
+    GameObject levelLoader;
     ElectricityManager electricityManager = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour
         topLayer = GameObject.Find("TopLayer");
         goalEffect = GameObject.Find("GoalEffect");
         goal = GameObject.Find("Goal");
+        levelLoader = GameObject.Find("LevelLoader");
 
         if(GameObject.Find("ElectricityManager") != null)
         {
@@ -50,6 +53,7 @@ public class GameController : MonoBehaviour
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
         goalEffect.SetActive(true);
+        levelLoader.GetComponent<LevelLoader>().LoadNextDelayed();
 
         GameAnalytics.instance.AppendShotData();
     }

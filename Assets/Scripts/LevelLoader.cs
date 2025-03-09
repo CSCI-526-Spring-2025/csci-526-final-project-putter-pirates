@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -49,5 +50,16 @@ public class LevelLoader : MonoBehaviour
     public void CompleteResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadNextDelayed()
+    {
+        StartCoroutine(DelayedSceneChange());
+    }
+    
+    private IEnumerator DelayedSceneChange()
+    {
+        yield return new WaitForSeconds(10); // Wait for 10 seconds
+        LoadNext();
     }
 }
