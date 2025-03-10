@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ElectricDoor : MonoBehaviour
 {
-    Color openedColor = new Color(0.368f, 0, 0.671f, 0.5f);
+    Color openedColor = new Color(0.368f, 0, 0.671f, 0.1f);
     Color closedColor = new Color(0.368f, 0, 0.671f, 1);
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
