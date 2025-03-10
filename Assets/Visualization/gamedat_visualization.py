@@ -26,6 +26,18 @@ if response.status_code == 200:
     # Print DataFrame
     print(df)
 
+    # Plot bar chart
+    plt.figure(figsize=(8, 5))
+    plt.bar(level_shots.keys(), level_shots.values(), alpha=0.75, color='skyblue')
+    plt.xlabel("Levels")
+    plt.ylabel("Average Shots")
+    plt.title("Average Shots per Level")
+    plt.xticks(rotation=45)
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+
+    # Show the plot
+    plt.show()
+
 
 else:
     print("Failed to fetch data:", response.status_code)
