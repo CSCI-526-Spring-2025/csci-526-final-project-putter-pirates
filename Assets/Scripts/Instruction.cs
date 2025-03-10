@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ModeSwithBtn : MonoBehaviour
+public class Instruction : MonoBehaviour
 {
     GameController gc;
     TextMeshProUGUI textMeshPro;
@@ -15,6 +15,6 @@ public class ModeSwithBtn : MonoBehaviour
         // Update is called once per frame
         void Update()
     {
-        textMeshPro.text = gc.isRotateState ? "Rotate" : "Play";        
+        textMeshPro.text = gc.isRotateState ? "Click a tile to rotate it!" : "Click and drag to aim the ball!";   
     }
 }
