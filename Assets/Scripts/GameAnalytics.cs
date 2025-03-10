@@ -3,16 +3,21 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine.SceneManagement;
 
 public class GameAnalytics : MonoBehaviour
-{
-    private string databaseURL = "https://putterdatabase-default-rtdb.firebaseio.com/analytics/shots.json"; // Replace with your Firebase URL
+{   private int levelNum;
     private int shotCount = 0; // Track shots per game
-
+    private string databaseURL;
     public static GameAnalytics instance;
+
+    
 
     void Awake()
     {
+        levelNum = SceneManager.GetActiveScene().buildIndex - 0;
+        databaseURL = $"https://putterdatabase-default-rtdb.firebaseio.com/analytics/level{levelNum}/shots.json";
+        Debug.Log("🎯 Level " + levelNum);
         if (instance == null)
         {
             instance = this;
