@@ -30,7 +30,7 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        if (freezed) return;
+        if (freezed || gameController.isRotateState) return;
         if (shooted)
         {
             if (rb.linearVelocity.magnitude < 0.2)
