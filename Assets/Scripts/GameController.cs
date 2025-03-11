@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().Freeze();
         goalEffect.SetActive(true);
         levelLoader.GetComponent<LevelLoader>().LoadNextDelayed();
+        isGameState = false;
 
         GameAnalytics.instance.AppendShotData();
     }
@@ -90,6 +91,7 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().ResetPosition();
         goalEffect.GetComponent<ParticleSystem>().Clear();
         goalEffect.SetActive(false);
+        isGameState = true;
         if (electricityManager != null) electricityManager.ResetButtons();
     }
 }
