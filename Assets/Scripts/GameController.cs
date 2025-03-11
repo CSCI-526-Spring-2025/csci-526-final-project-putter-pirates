@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     GameObject ball;        // in "rotate state", the fakeball without physics would be activated (to prevent falling), 
     GameObject fakeBall;    // in "play state" the real ball with physics would be activated
     GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
+    GameObject topLayer1;
+    GameObject topLayer2;
     GameObject goalEffect;
     GameObject goal;
     GameObject levelLoader;
@@ -15,15 +17,17 @@ public class GameController : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   
+    {
         ball = GameObject.Find("Ball");
         fakeBall = GameObject.Find("FakeBall");
         topLayer = GameObject.Find("TopLayer");
+        topLayer1 = GameObject.Find("TopLayer1");
+        topLayer2 = GameObject.Find("TopLayer2");
         goalEffect = GameObject.Find("GoalEffect");
         goal = GameObject.Find("Goal");
         levelLoader = GameObject.Find("LevelLoader");
 
-        if(GameObject.Find("ElectricityManager") != null)
+        if (GameObject.Find("ElectricityManager") != null)
         {
             electricityManager = GameObject.Find("ElectricityManager").GetComponent<ElectricityManager>();
         }
@@ -31,6 +35,11 @@ public class GameController : MonoBehaviour
         ball.SetActive(!isRotateState);
         fakeBall.SetActive(isRotateState);
         topLayer.SetActive(isRotateState);
+        if (topLayer1 != null && topLayer2 != null)
+        {
+            topLayer1.SetActive(isRotateState);
+            topLayer2.SetActive(isRotateState);
+        }
         goalEffect.SetActive(!isGameState);
     }
 
@@ -45,7 +54,7 @@ public class GameController : MonoBehaviour
         }
 
         // R key resets the ball
-        if(Input.GetKeyDown(KeyCode.R)) ResetLevel();
+        if (Input.GetKeyDown(KeyCode.R)) ResetLevel();
     }
 
     public void Sucess()
@@ -69,6 +78,11 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().ResetPosition();
         fakeBall.SetActive(isRotateState);
         topLayer.SetActive(isRotateState);
+        if (topLayer1 != null && topLayer2 != null)
+        {
+            topLayer1.SetActive(isRotateState);
+            topLayer2.SetActive(isRotateState);
+        }
     }
 
     public void ResetLevel()
@@ -76,6 +90,6 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().ResetPosition();
         goalEffect.GetComponent<ParticleSystem>().Clear();
         goalEffect.SetActive(false);
-        if(electricityManager != null) electricityManager.ResetButtons();
+        if (electricityManager != null) electricityManager.ResetButtons();
     }
 }
