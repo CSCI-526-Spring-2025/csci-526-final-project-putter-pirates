@@ -18037,6 +18037,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Pause
       objectReference: {fileID: 0}
+    - target: {fileID: 109237723136264758, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015259
+      objectReference: {fileID: 0}
+    - target: {fileID: 109237723136264758, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 119.22
+      objectReference: {fileID: 0}
     - target: {fileID: 140295303337827420, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
