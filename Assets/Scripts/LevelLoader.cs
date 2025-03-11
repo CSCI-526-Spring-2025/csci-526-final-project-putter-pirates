@@ -34,6 +34,11 @@ public class LevelLoader : MonoBehaviour
         else SceneManager.LoadScene(level);
     }
 
+    public void LoadLevelButton(int level)
+    {
+        LoadLevel(level);    
+    }
+
     public void LoadNext()
     {
         if(isLastLevel) return;
