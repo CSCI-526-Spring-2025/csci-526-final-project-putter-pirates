@@ -15,7 +15,8 @@ public class Goal : MonoBehaviour
         if (isDynamic)
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
-            rb.simulated = false; // prevent the goal from falling before
+            // rb.simulated = false; // prevent the goal from falling before
+            rb.bodyType = RigidbodyType2D.Static; // prevent the goal from falling before
         }
         
     }
@@ -31,14 +32,15 @@ public class Goal : MonoBehaviour
         freeze = !freeze;
         if (isDynamic)
         {
-            if (freeze)
-            {
-                rb.simulated = false;
-            }
-            else
-            {
-                rb.simulated = true;
-            }
+            // if (freeze)
+            // {
+            //     rb.simulated = false;
+            // }
+            // else
+            // {
+            //     rb.simulated = true;
+            // }
+            rb.bodyType = freeze? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
         }
         
     }
