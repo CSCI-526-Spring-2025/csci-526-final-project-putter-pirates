@@ -48,14 +48,14 @@ public class GameController : MonoBehaviour
     void Update()
     {
         // the state is toggled with Space
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGameState)
         {
             goal.GetComponent<Goal>().flipFreeze();
             ToggleState();
         }
 
         // R key resets the ball
-        if (Input.GetKeyDown(KeyCode.R)) ResetLevel();
+        if (Input.GetKeyDown(KeyCode.R) && isGameState) ResetLevel();
     }
 
     public void Sucess()
@@ -71,6 +71,8 @@ public class GameController : MonoBehaviour
 
     public void ToggleState()
     {
+        if(!isGameState) return;
+        
         isRotateState = !isRotateState;
         Debug.Log("isRotateState: " + isRotateState);
 

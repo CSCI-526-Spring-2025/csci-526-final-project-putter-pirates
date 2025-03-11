@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
     GameController gameController;
     bool freezed = false;  // if the ball goes into the hole, it won't came back
     bool shooted = false;
+    bool isAfterPlayModeMouseDown = true;
     float smallVelocityContinuousTime = 0;
 
     void Start()
@@ -48,6 +49,7 @@ public class Ball : MonoBehaviour
         {
             // when the mouse is down, we record the start position
             ms_down_pos = Input.mousePosition;
+            isAfterPlayModeMouseDown = true;
         }
 
         // calculate the direction and magnitude of shooting
@@ -59,7 +61,7 @@ public class Ball : MonoBehaviour
         ag = Mathf.Acos(dir.x) * 180 / Mathf.PI * (dir.y > 0 ? 1 : -1) - 90;
         if (meg > 0.4) meg = 0.4f;
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && isAfterPlayModeMouseDown)
         {
             // if the mouse is released, we use the direction and magnitude to shoot the ball
             if (meg < 0.1) return; // if the force is too weak, then don't shoot
@@ -98,6 +100,7 @@ public class Ball : MonoBehaviour
         rb.gravityScale = 0;
         shooted = false;
         freezed = false;
+        isAfterPlayModeMouseDown = false;
         lastpath.GetComponent<LastPath>().StopRecording();
     }
 }
