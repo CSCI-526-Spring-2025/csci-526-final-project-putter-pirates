@@ -71,6 +71,8 @@ public class Ball : MonoBehaviour
             shooted = true;
             lastpath.GetComponent<LastPath>().StartRecording();
             GameAnalytics.instance.TrackShot();
+            FindObjectOfType<TileInitializer>().PrintTilesRotationState();
+
         }
         else if (Input.GetMouseButton(0))
         {
