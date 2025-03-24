@@ -50,7 +50,6 @@ public class GameController : MonoBehaviour
         // the state is toggled with Space
         if (Input.GetKeyDown(KeyCode.Space) && isGameState)
         {
-            goal.GetComponent<Goal>().flipFreeze();
             ToggleState();
         }
 
@@ -87,6 +86,7 @@ public class GameController : MonoBehaviour
             topLayer1.SetActive(isRotateState);
             topLayer2.SetActive(isRotateState);
         }
+        goal.GetComponent<Goal>().flipFreeze();
     }
 
     public void ResetLevel()
