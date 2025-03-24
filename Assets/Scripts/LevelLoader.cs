@@ -24,7 +24,7 @@ public class LevelLoader : MonoBehaviour
             if (Input.GetKeyDown(i.ToString())) LoadLevel(level0Index+i);
         }
 
-        if (Input.GetKeyDown(KeyCode.W)) CompleteResetLevel();
+        if (Input.GetKeyDown(KeyCode.W)) ReloadCurrentLevel();
 
     }
 
@@ -52,7 +52,7 @@ public class LevelLoader : MonoBehaviour
     }
 
     // move tiles back to starting orientation
-    public void CompleteResetLevel()
+    public void ReloadCurrentLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

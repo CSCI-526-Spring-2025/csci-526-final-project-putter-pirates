@@ -5,7 +5,7 @@ public class GameController : MonoBehaviour
 {
     public bool isRotateState = true;
     public bool isGameState = true;
-    public bool pause = false;
+    public bool isPaused = false;
     GameObject ball;        // in "rotate state", the fakeball without physics would be activated (to prevent falling), 
     GameObject fakeBall;    // in "play state" the real ball with physics would be activated
     GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
@@ -98,8 +98,8 @@ public class GameController : MonoBehaviour
         if (electricityManager != null) electricityManager.ResetButtons();
     }
 
-    public void Pause()
+    public void TogglePause()
     {
-        pause = !pause;
+        isPaused = !isPaused;
     }
 }

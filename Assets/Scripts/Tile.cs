@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour
     void Update()
     {
         if (!gc.GetComponent<GameController>().isRotateState) return;
-        if (gc.GetComponent<GameController>().pause) return;
+        if (gc.GetComponent<GameController>().isPaused) return;
 
         if (Input.GetMouseButtonDown(0))
         {

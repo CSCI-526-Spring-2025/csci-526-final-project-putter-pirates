@@ -523,6 +523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615e7de9af8bb4074af3484580b99435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  rotation: 0
 --- !u!212 &50384855
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1263,6 +1265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615e7de9af8bb4074af3484580b99435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  rotation: 0
 --- !u!212 &126872370
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6770,6 +6774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615e7de9af8bb4074af3484580b99435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  rotation: 0
 --- !u!61 &1037457644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9120,6 +9126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615e7de9af8bb4074af3484580b99435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  rotation: 0
 --- !u!61 &1192041019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10383,7 +10391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRotateState: 1
   isGameState: 1
-  pause: 0
+  isPaused: 0
 --- !u!4 &1472282054
 Transform:
   m_ObjectHideFlags: 0
@@ -18029,14 +18037,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 28526820872279220, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1472282053}
-    - target: {fileID: 28526820872279220, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Pause
-      objectReference: {fileID: 0}
     - target: {fileID: 109237723136264758, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.000015259
@@ -18044,14 +18044,6 @@ PrefabInstance:
     - target: {fileID: 109237723136264758, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 119.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 140295303337827420, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1472282053}
-    - target: {fileID: 140295303337827420, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Pause
       objectReference: {fileID: 0}
     - target: {fileID: 1863567813374893888, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
       propertyPath: m_Pivot.x
@@ -18136,14 +18128,6 @@ PrefabInstance:
     - target: {fileID: 1945498715254007829, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
       propertyPath: m_text
       value: 'Tip: Some goals can move!'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2136433914574242283, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1472282053}
-    - target: {fileID: 2136433914574242283, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleState
       objectReference: {fileID: 0}
     - target: {fileID: 2924704066516191002, guid: c44e3ec93812946f4a1b4db7decd0593, type: 3}
       propertyPath: m_Name

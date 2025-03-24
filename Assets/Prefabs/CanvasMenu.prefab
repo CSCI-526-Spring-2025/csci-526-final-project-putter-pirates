@@ -121,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -254,9 +254,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -387,9 +387,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1078,9 +1078,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ToggleState
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: ToggleGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1211,9 +1211,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadPrev
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadPreviousLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1664,9 +1664,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1760,6 +1760,7 @@ GameObject:
   - component: {fileID: 7391007912950601494}
   - component: {fileID: 7164454301301827528}
   - component: {fileID: 1291556692947013620}
+  - component: {fileID: 451077852657372223}
   m_Layer: 5
   m_Name: CanvasMenu
   m_TagString: Untagged
@@ -1781,7 +1782,6 @@ RectTransform:
   m_Children:
   - {fileID: 6650314888481378751}
   - {fileID: 3113368292408068537}
-  - {fileID: 8856193170770208479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1852,6 +1852,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &451077852657372223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2924704066516191002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9bddc7a738d42e68697bb552314b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3168232339031070833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,9 +1985,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2242,9 +2254,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2387,9 +2399,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: Pause
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: ToggleGamePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2928,9 +2940,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadNext
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3339,9 +3351,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3621,9 +3633,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: CompleteResetLevel
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: ReloadCurrentLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3890,9 +3902,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4159,9 +4171,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4576,9 +4588,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: Pause
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: ToggleGamePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5023,9 +5035,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268731135138381169}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevelButton
+      - m_Target: {fileID: 451077852657372223}
+        m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
+        m_MethodName: LoadSpecificLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5171,50 +5183,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &9170857920754713230
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8856193170770208479}
-  - component: {fileID: 1268731135138381169}
-  m_Layer: 0
-  m_Name: LevelLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8856193170770208479
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170857920754713230}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -417.15555, y: -210.02518, z: -0.0038199215}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1863567813374893888}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1268731135138381169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170857920754713230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dedce2228d9940e8816d4893e6fedce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelNum: 0
-  isLevel0: 0
-  isLastLevel: 0
