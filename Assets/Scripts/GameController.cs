@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     GameObject goalEffect;
     GameObject goal;
     GameObject levelLoader;
+    LevelUIManagement levelUIManagement;
     ElectricityManager electricityManager = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
         goal = GameObject.Find("Goal");
         levelLoader = GameObject.Find("LevelLoader");
 
+        levelUIManagement = GameObject.Find("CanvasMenu").GetComponent<LevelUIManagement>();
         if (GameObject.Find("ElectricityManager") != null)
         {
             electricityManager = GameObject.Find("ElectricityManager").GetComponent<ElectricityManager>();
@@ -42,6 +44,7 @@ public class GameController : MonoBehaviour
             topLayer2.SetActive(isRotateState);
         }
         goalEffect.SetActive(!isGameState);
+
     }
 
     // Update is called once per frame
@@ -62,7 +65,8 @@ public class GameController : MonoBehaviour
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
         goalEffect.SetActive(true);
-        levelLoader.GetComponent<LevelLoader>().LoadNextDelayed();
+        // levelLoader.GetComponent<LevelLoader>().LoadNextDelayed();
+        levelUIManagement.StartLevelClearUIRoutine();
         isGameState = false;
 
         GameAnalytics.instance.AppendShotData();

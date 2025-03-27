@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUIManagement : MonoBehaviour
 {
@@ -31,8 +33,10 @@ public class LevelUIManagement : MonoBehaviour
         levelLoader.ReloadCurrentLevel();
     }
 
-    public void LoadNextLevel()
+    public void LoadNextLevel(bool afterLevelCleared=false)
     {
+        if(afterLevelCleared){} //not skipped
+        else {} // skipped
         levelLoader.LoadNext();
     }
 
@@ -44,5 +48,21 @@ public class LevelUIManagement : MonoBehaviour
     public void LoadSpecificLevel(int level)
     {
         levelLoader.LoadLevel(level, true);
+    }
+
+    public void StartLevelClearUIRoutine()
+    {
+        transform.Find("OverlayMenu/MenuButton").gameObject.GetComponent<Button>().interactable = false;
+        transform.Find("OverlayMenu/ResetButton").gameObject.GetComponent<Button>().interactable = false;
+        transform.Find("OverlayMenu/NextButton").gameObject.GetComponent<Button>().interactable = false;
+        transform.Find("OverlayMenu/PrevButton").gameObject.GetComponent<Button>().interactable = false;
+        transform.Find("OverlayMenu/StateSwitchButton").gameObject.GetComponent<Button>().interactable = false;
+        StartCoroutine(DelayedShowLevelClearPanel());
+    }
+
+    IEnumerator DelayedShowLevelClearPanel()
+    {
+        yield return new WaitForSeconds(2f);
+        transform.Find("LevelClearPanel").gameObject.SetActive(true);
     }
 }
