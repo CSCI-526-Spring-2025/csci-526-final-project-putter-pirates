@@ -76,7 +76,7 @@ public class Ball : MonoBehaviour
             // GameAnalytics.instance.PrintTileStates();
 
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0) && isAfterPlayModeMouseDown)
         {
             // if the mouse is held, we use the direction and magnitude to transform that triangle
             triangle.SetActive(true);
