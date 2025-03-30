@@ -5,9 +5,13 @@ public class Ball : MonoBehaviour
 {
     public float shoot_speed = 50;
     public GameObject shadow;
+    public Trajectory trajectory;
+
+    public float impactForce = 100;
 
     GameObject triangle;
     GameObject lastpath;
+    
     Rigidbody2D rb;
     Vector3 ms_down_pos;
     Vector3 startPosition;
@@ -22,11 +26,13 @@ public class Ball : MonoBehaviour
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         lastpath = GameObject.Find("LastPath");
         triangle = transform.Find("Triangle").gameObject;
-
+        trajectory = GameObject.Find("Trajectory").GetComponent<Trajectory>();
+        
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0; // prevent the ball from falling before shoot
 
         triangle.SetActive(false);
+        trajectory.Hide();
     }
 
     void Update()
@@ -50,6 +56,8 @@ public class Ball : MonoBehaviour
             // when the mouse is down, we record the start position
             ms_down_pos = Input.mousePosition;
             isAfterPlayModeMouseDown = true;
+
+            trajectory.Show();
         }
 
         // calculate the direction and magnitude of shooting
@@ -61,13 +69,21 @@ public class Ball : MonoBehaviour
         ag = Mathf.Acos(dir.x) * 180 / Mathf.PI * (dir.y > 0 ? 1 : -1) - 90;
         if (meg > 0.4) meg = 0.4f;
 
+        Vector2 force = meg * shoot_speed * dir;
+
         if (Input.GetMouseButtonUp(0) && isAfterPlayModeMouseDown)
         {
+            trajectory.Hide();
             // if the mouse is released, we use the direction and magnitude to shoot the ball
             if (meg < 0.1) return; // if the force is too weak, then don't shoot
             triangle.SetActive(false);
+            
             rb.gravityScale = 1.5f;
             rb.linearVelocity = meg * shoot_speed * dir;
+            
+            //rb.AddForce(force, ForceMode2D.Force);
+            //Debug.Log("added force: " + force);
+
             shooted = true;
             lastpath.GetComponent<LastPath>().StartRecording();
             GameAnalytics.instance.TrackShot();
@@ -79,6 +95,8 @@ public class Ball : MonoBehaviour
         else if (Input.GetMouseButton(0) && isAfterPlayModeMouseDown)
         {
             // if the mouse is held, we use the direction and magnitude to transform that triangle
+            trajectory.Show();
+            trajectory.UpdateDots(rb.position, force);
             triangle.SetActive(true);
             triangle.transform.localScale = new Vector3(1, meg * 20, 1);
             triangle.transform.rotation = Quaternion.Euler(0, 0, ag);
