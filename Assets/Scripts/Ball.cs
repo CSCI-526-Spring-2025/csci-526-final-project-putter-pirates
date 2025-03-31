@@ -25,19 +25,25 @@ public class Ball : MonoBehaviour
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         lastpath = GameObject.Find("LastPath");
-        triangle = transform.Find("Triangle").gameObject;
+        // triangle = transform.Find("Triangle").gameObject;
         trajectory = GameObject.Find("Trajectory").GetComponent<Trajectory>();
         
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0; // prevent the ball from falling before shoot
 
-        triangle.SetActive(false);
+        // triangle.SetActive(false);
         trajectory.Hide();
     }
 
     void Update()
     {
-        if (freezed || gameController.isRotateState) return;
+        if (freezed || gameController.isRotateState || gameController.isPaused)
+        {
+            trajectory.Hide();
+            rb.linearVelocity = Vector2.zero;
+            ms_down_pos = Input.mousePosition;
+            return;
+        }
         if (shooted)
         {
             if (rb.linearVelocity.magnitude < 0.2)
@@ -76,7 +82,7 @@ public class Ball : MonoBehaviour
             trajectory.Hide();
             // if the mouse is released, we use the direction and magnitude to shoot the ball
             if (meg < 0.1) return; // if the force is too weak, then don't shoot
-            triangle.SetActive(false);
+            // triangle.SetActive(false);
             
             rb.gravityScale = 1.5f;
             rb.linearVelocity = meg * shoot_speed * dir;
@@ -97,10 +103,10 @@ public class Ball : MonoBehaviour
             // if the mouse is held, we use the direction and magnitude to transform that triangle
             trajectory.Show();
             trajectory.UpdateDots(rb.position, force);
-            triangle.SetActive(true);
-            triangle.transform.localScale = new Vector3(1, meg * 20, 1);
-            triangle.transform.rotation = Quaternion.Euler(0, 0, ag);
-            triangle.GetComponent<SpriteRenderer>().color = new Color(meg / 0.5f, 0, 1 - meg / 0.5f, 0.5f);
+            //triangle.SetActive(true);
+            //triangle.transform.localScale = new Vector3(1, meg * 20, 1);
+            //triangle.transform.rotation = Quaternion.Euler(0, 0, ag);
+            //triangle.GetComponent<SpriteRenderer>().color = new Color(meg / 0.5f, 0, 1 - meg / 0.5f, 0.5f);
         }
     }
 

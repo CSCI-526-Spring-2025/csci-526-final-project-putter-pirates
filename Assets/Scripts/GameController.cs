@@ -105,5 +105,6 @@ public class GameController : MonoBehaviour
     public void TogglePause()
     {
         isPaused = !isPaused;
+        Debug.Log("pause toggled to: " + isPaused);
     }
 }

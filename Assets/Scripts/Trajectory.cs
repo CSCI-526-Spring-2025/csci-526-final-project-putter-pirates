@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Trajectory : MonoBehaviour
 {
     public int numDots;
+    private int maxDots = 30;
     public GameObject dotsParent;
     public GameObject dotPrefab;
     public float dotSpacing;
@@ -12,11 +15,24 @@ public class Trajectory : MonoBehaviour
     Vector2 pos;
     float timeGap;
 
+    private GameController gc;
+
+    [SerializeField] private Slider slider;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        gc = GameObject.Find("GameController").GetComponent<GameController>();
+
         Hide();
         PrepareDots();
+
+        numDots = (int) slider.value;
+        slider.onValueChanged.AddListener((v) =>
+        {
+            numDots = ((int)v);
+        });
     }
 
     // Update is called once per frame
@@ -27,9 +43,9 @@ public class Trajectory : MonoBehaviour
 
     void PrepareDots()
     {
-        dotsList = new Transform[numDots];
+        dotsList = new Transform[maxDots];
 
-        for (int i = 0; i < numDots; i++)
+        for (int i = 0; i < maxDots; i++)
         {
             dotsList[i] = Instantiate(dotPrefab, null).transform;
             dotsList[i].parent = dotsParent.transform;
@@ -38,6 +54,8 @@ public class Trajectory : MonoBehaviour
 
     public void UpdateDots(Vector3 ballPos, Vector2 initialVelocity)
     {
+        if (gc.GetComponent<GameController>().isPaused) return;
+
         timeGap = dotSpacing;
         for (int i = 0; i < numDots; i++)
         {
@@ -47,6 +65,12 @@ public class Trajectory : MonoBehaviour
             dotsList[i].position = pos;
 
             timeGap += dotSpacing;
+            
+        }
+
+        for (int i = numDots; i < maxDots; i++)
+        {
+            dotsList[i].position = ballPos;
         }
     }
 
@@ -67,7 +91,11 @@ public class Trajectory : MonoBehaviour
 
     public void Show()
     {
-        dotsParent.SetActive(true);
+        if (!gc.isPaused)
+        {
+            dotsParent.SetActive(true);
+        }
+        
 
     }
 
