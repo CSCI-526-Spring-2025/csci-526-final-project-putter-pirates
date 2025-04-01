@@ -5882,6 +5882,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3969801933852396386, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
   m_PrefabInstance: {fileID: 1979357626}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1979357628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5061184217992638438, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+  m_PrefabInstance: {fileID: 1979357626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1989015068
 GameObject:
   m_ObjectHideFlags: 0
@@ -11186,7 +11197,7 @@ PrefabInstance:
     - target: {fileID: 324247708189467767, guid: 53e2d26600a7c483b83853815fdd2b00, type: 3}
       propertyPath: slider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1979357628}
     - target: {fileID: 5940218873374885143, guid: 53e2d26600a7c483b83853815fdd2b00, type: 3}
       propertyPath: m_Name
       value: Trajectory
