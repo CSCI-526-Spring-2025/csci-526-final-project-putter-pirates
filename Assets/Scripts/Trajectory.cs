@@ -19,26 +19,23 @@ public class Trajectory : MonoBehaviour
 
     [SerializeField] private Slider slider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         gc = GameObject.Find("GameController").GetComponent<GameController>();
 
         Hide();
         PrepareDots();
 
-        numDots = (int) slider.value;
+        // Load numDots value if it exists, otherwise use the default
+        numDots = PlayerPrefs.GetInt("numDots", (int)slider.value);
+        slider.value = numDots;
+
         slider.onValueChanged.AddListener((v) =>
         {
-            numDots = ((int)v);
+            numDots = (int)v;
+            PlayerPrefs.SetInt("numDots", numDots);
+            PlayerPrefs.Save(); // Save the value persistently
         });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void PrepareDots()
@@ -63,9 +60,7 @@ public class Trajectory : MonoBehaviour
             pos.y = ballPos.y + (initialVelocity.y * timeGap) - (Physics2D.gravity.magnitude * 1.5f * timeGap * timeGap) / 2f;
 
             dotsList[i].position = pos;
-
             timeGap += dotSpacing;
-            
         }
 
         for (int i = numDots; i < maxDots; i++)
@@ -73,6 +68,7 @@ public class Trajectory : MonoBehaviour
             dotsList[i].position = ballPos;
         }
     }
+
 
     //public void UpdateDots(Vector3 ballPos, Vector2 forceApplied)
     //{
@@ -96,8 +92,6 @@ public class Trajectory : MonoBehaviour
             dotsParent.SetActive(true);
             Debug.Log("numDots: " + numDots);
         }
-        
-
     }
 
     public void Hide()
