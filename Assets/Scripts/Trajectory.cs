@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Trajectory : MonoBehaviour
 {
-    public int numDots;
+    public int numDots = 10;
     private int maxDots = 30;
     public GameObject dotsParent;
     public GameObject dotPrefab;
@@ -94,6 +94,7 @@ public class Trajectory : MonoBehaviour
         if (!gc.isPaused)
         {
             dotsParent.SetActive(true);
+            Debug.Log("numDots: " + numDots);
         }
         
 
