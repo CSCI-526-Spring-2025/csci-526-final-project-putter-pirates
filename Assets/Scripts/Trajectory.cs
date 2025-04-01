@@ -54,7 +54,7 @@ public class Trajectory : MonoBehaviour
 
     public void UpdateDots(Vector3 ballPos, Vector2 initialVelocity)
     {
-        if (gc.GetComponent<GameController>().isPaused) return;
+        if (gc.GetComponent<GameController>().isPaused || initialVelocity.Equals(Vector2.zero)) return;
 
         timeGap = dotSpacing;
         for (int i = 0; i < numDots; i++)

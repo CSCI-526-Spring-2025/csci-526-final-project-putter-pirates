@@ -1522,15 +1522,15 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2412227056454880108}
         m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
-        m_MethodName: ToggleGamePause
-        m_Mode: 1
+        m_MethodName: SetGamePause
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1592969907768044649
 GameObject:
@@ -2894,8 +2894,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2176099073374992204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.1, y: 0}
+  m_AnchorMax: {x: 0.1, y: 1}
   m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5445,15 +5445,15 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2412227056454880108}
         m_TargetAssemblyTypeName: LevelUIManagement, Assembly-CSharp
-        m_MethodName: ToggleGamePause
-        m_Mode: 1
+        m_MethodName: SetGamePause
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &6971579595868727755
 GameObject:
@@ -5757,7 +5757,7 @@ RectTransform:
   m_Father: {fileID: 1849839462065782943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.1, y: 1}
   m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

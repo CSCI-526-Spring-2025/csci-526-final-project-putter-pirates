@@ -23,6 +23,11 @@ public class LevelUIManagement : MonoBehaviour
         gameController.TogglePause();
     }
 
+    public void SetGamePause(bool paused)
+    {
+        gameController.isPaused = paused;
+    }
+
     public void ToggleGameState()
     {
         gameController.ToggleState();
