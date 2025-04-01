@@ -518,6 +518,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_text
+      value: Connecting wires activates electricity!
+      objectReference: {fileID: 0}
     - target: {fileID: 3772352853240692544, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 50
