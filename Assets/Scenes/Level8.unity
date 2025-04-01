@@ -520,7 +520,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_text
-      value: Connecting wires activates electricity!
+      value: Walls are deactivated when connected to electricity
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_margin.x
+      value: -106.45654
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_margin.z
+      value: -117.10208
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756024283105661788, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3772352853240692544, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_AnchoredPosition.y

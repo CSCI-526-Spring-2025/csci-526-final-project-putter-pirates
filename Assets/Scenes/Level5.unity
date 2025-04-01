@@ -805,6 +805,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Some goals can move!
       objectReference: {fileID: 0}
+    - target: {fileID: 2756024283105661788, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3969801933852396386, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
