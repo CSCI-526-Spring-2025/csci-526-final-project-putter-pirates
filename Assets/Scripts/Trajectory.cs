@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Trajectory : MonoBehaviour
 {
@@ -11,13 +12,16 @@ public class Trajectory : MonoBehaviour
     public float dotSpacing;
 
     Transform[] dotsList;
-
     Vector2 pos;
     float timeGap;
-
     private GameController gc;
-
     [SerializeField] private Slider slider;
+
+    void Awake()
+    {
+        // Subscribe to scene load event to keep numDots across levels
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
     void Start()
     {
@@ -26,16 +30,24 @@ public class Trajectory : MonoBehaviour
         Hide();
         PrepareDots();
 
-        // Load numDots value if it exists, otherwise use the default
-        numDots = PlayerPrefs.GetInt("numDots", (int)slider.value);
+        // Load numDots from PlayerPrefs across all levels
+        numDots = PlayerPrefs.GetInt("numDots", 10); // Default to 10 if not set
         slider.value = numDots;
 
         slider.onValueChanged.AddListener((v) =>
         {
             numDots = (int)v;
             PlayerPrefs.SetInt("numDots", numDots);
-            PlayerPrefs.Save(); // Save the value persistently
+            PlayerPrefs.Save(); // Save persistently
         });
+    }
+
+    // This ensures numDots is correctly set when a new level loads
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        numDots = PlayerPrefs.GetInt("numDots", 10);
+        slider.value = numDots;
+        UpdateDots(Vector3.zero, Vector2.zero); // Reset dots if needed
     }
 
     void PrepareDots()
@@ -51,7 +63,7 @@ public class Trajectory : MonoBehaviour
 
     public void UpdateDots(Vector3 ballPos, Vector2 initialVelocity)
     {
-        if (gc.GetComponent<GameController>().isPaused || initialVelocity.Equals(Vector2.zero)) return;
+        if (gc.isPaused || initialVelocity.Equals(Vector2.zero)) return;
 
         timeGap = dotSpacing;
         for (int i = 0; i < numDots; i++)
@@ -69,6 +81,28 @@ public class Trajectory : MonoBehaviour
         }
     }
 
+    public void Show()
+    {
+        if (!gc.isPaused)
+        {
+            dotsParent.SetActive(true);
+            Debug.Log("numDots: " + numDots);
+        }
+    }
+
+    public void Hide()
+    {
+        dotsParent.SetActive(false);
+    }
+
+    void OnDestroy()
+    {
+        // Unsubscribe from the scene load event to avoid memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+}
+
+
 
     //public void UpdateDots(Vector3 ballPos, Vector2 forceApplied)
     //{
@@ -85,17 +119,3 @@ public class Trajectory : MonoBehaviour
     //    }
     //}
 
-    public void Show()
-    {
-        if (!gc.isPaused)
-        {
-            dotsParent.SetActive(true);
-            Debug.Log("numDots: " + numDots);
-        }
-    }
-
-    public void Hide()
-    {
-        dotsParent.SetActive(false);
-    }
-}

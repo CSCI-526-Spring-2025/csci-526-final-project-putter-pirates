@@ -1,25 +1,43 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AimAssistSlider : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI label;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
+    {
+        // Load saved slider value when the scene starts
+        slider.value = PlayerPrefs.GetFloat("AimAssistValue", 10);
+        label.text = slider.value.ToString();
+
+        // Subscribe to scene change events
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     void Start()
     {
-        slider.value = 10;
         slider.onValueChanged.AddListener((v) =>
         {
             label.text = v.ToString();
+            PlayerPrefs.SetFloat("AimAssistValue", v);
+            PlayerPrefs.Save(); // Save persistently
         });
     }
 
-    // Update is called once per frame
-    void Update()
+    // Ensure slider updates correctly when a new level loads
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+        slider.value = PlayerPrefs.GetFloat("AimAssistValue", 10);
+        label.text = slider.value.ToString();
+    }
+
+    void OnDestroy()
+    {
+        // Unsubscribe to avoid memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
