@@ -1831,6 +1831,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 993.0098
+      objectReference: {fileID: 0}
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 241.2191
+      objectReference: {fileID: 0}
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 217.6562
+      objectReference: {fileID: 0}
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -82.1812
+      objectReference: {fileID: 0}
+    - target: {fileID: 440143906766801445, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 440143906766801445, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_text
       value: The range of the blue wind zone is different
@@ -1846,6 +1870,10 @@ PrefabInstance:
     - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_fontSizeBase
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272130086772243618, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2756024283105661788, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Enabled
@@ -1935,6 +1963,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6461620339263053062, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -6
+      objectReference: {fileID: 0}
     - target: {fileID: 6844272168693787959, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Name
       value: CanvasMenu
@@ -1946,6 +1978,22 @@ PrefabInstance:
     - target: {fileID: 8108254565077208380, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_fontSizeBase
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_text
+      value: The blue fans have a large area of effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_margin.x
+      value: -36.36241
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_margin.z
+      value: -32.84346
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862375622910741293, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

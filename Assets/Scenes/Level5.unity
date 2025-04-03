@@ -801,9 +801,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 993.0099
+      objectReference: {fileID: 0}
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 235.1569
+      objectReference: {fileID: 0}
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 217.6562
+      objectReference: {fileID: 0}
+    - target: {fileID: 428799633894545604, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -81.00822
+      objectReference: {fileID: 0}
+    - target: {fileID: 440143906766801445, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 440143906766801445, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_text
       value: Some goals can move!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272130086772243618, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2756024283105661788, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Enabled
@@ -889,9 +917,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6461620339263053062, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21
+      objectReference: {fileID: 0}
     - target: {fileID: 6844272168693787959, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Name
       value: CanvasMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_text
+      value: The blue fans have a large area of effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_margin.x
+      value: -37.5354
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_margin.z
+      value: -35.189346
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

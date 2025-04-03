@@ -447,6 +447,10 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: -88.20676
       objectReference: {fileID: 0}
+    - target: {fileID: 2272130086772243618, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2756024283105661788, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -531,9 +535,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6461620339263053062, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
     - target: {fileID: 6844272168693787959, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Name
       value: CanvasMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_text
+      value: "Electricity is transmitted through wires. \nPurple doors disappear
+        when connected to electricity."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_fontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
