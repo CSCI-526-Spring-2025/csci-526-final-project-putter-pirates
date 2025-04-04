@@ -37,6 +37,7 @@ public class AimAssistSlider : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         slider.value = PlayerPrefs.GetFloat("AimAssistValue", 10);
+        gameAnalytics.SetAim(10); //change whenever default slider value is changed
         label.text = slider.value.ToString();
     }
 

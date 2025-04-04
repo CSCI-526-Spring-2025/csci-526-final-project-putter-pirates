@@ -6,6 +6,11 @@ public class TileInitializer : MonoBehaviour
 {
     public GameObject tileParent;
 
+    void Start()
+{
+    InitializeTileIndices(); // for when the game starts in this scene
+}
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -37,6 +42,7 @@ public class TileInitializer : MonoBehaviour
             {
                 tileScript.index = index++;
             }
+            Debug.Log("Tilescript : " + tileScript.index);
         }
 
         Debug.Log($"Tile indices initialized for level: {SceneManager.GetActiveScene().name}");
@@ -65,7 +71,7 @@ public void PrintTilesRotationState()
     tilesRotationStates = new List<int>(new int[maxIndex + 1]);
 
     foreach (Transform tile in tileParent.transform)
-    {
+    {   
         var tileScript = tile.GetComponent<Tile>();
         if (tileScript != null)
         {
@@ -88,7 +94,7 @@ public void PrintTilesRotationState()
             tilesRotationStates[tileScript.index] = state;
 
             // Logging for debug purposes
-            Debug.Log($"Tile {tileScript.index}: {state}");
+            // Debug.Log($"Tile {tileScript.index}: {state}");
         }
     }
 
