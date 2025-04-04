@@ -6,6 +6,7 @@ public class LevelUIManagement : MonoBehaviour
 {
     GameController gameController;
     LevelLoader levelLoader;
+    public static GameAnalytics instance;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class LevelUIManagement : MonoBehaviour
     {
         if(afterLevelCleared){} //not skipped
         else {} // skipped
+        // GameAnalytics.instance.TrackSkipped();
         levelLoader.LoadNext();
     }
 

@@ -70,6 +70,7 @@ public class GameController : MonoBehaviour
         isGameState = false;
 
         GameAnalytics.instance.AppendShotData();
+        GameAnalytics.instance.AppendAimData();
     }
 
     public void ToggleState()
