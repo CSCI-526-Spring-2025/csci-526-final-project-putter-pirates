@@ -59,11 +59,8 @@ public class LevelUIManagement : MonoBehaviour
 
     public void StartLevelClearUIRoutine()
     {
-        transform.Find("OverlayMenu/MenuButton").gameObject.GetComponent<Button>().interactable = false;
-        transform.Find("OverlayMenu/ResetButton").gameObject.GetComponent<Button>().interactable = false;
-        transform.Find("OverlayMenu/NextButton").gameObject.GetComponent<Button>().interactable = false;
-        transform.Find("OverlayMenu/PrevButton").gameObject.GetComponent<Button>().interactable = false;
-        transform.Find("OverlayMenu/StateSwitchButton").gameObject.GetComponent<Button>().interactable = false;
+        GameObject overlayMenu = transform.Find("OverlayMenu").gameObject;
+        foreach (Button btn in overlayMenu.GetComponentsInChildren<Button>()) btn.interactable = false;
         StartCoroutine(DelayedShowLevelClearPanel());
     }
 
