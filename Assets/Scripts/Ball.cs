@@ -63,7 +63,7 @@ public class Ball : MonoBehaviour
             ms_down_pos = Input.mousePosition;
             isAfterPlayModeMouseDown = true;
 
-            trajectory.Show();
+            // trajectory.Show();
         }
 
         // calculate the direction and magnitude of shooting
@@ -101,6 +101,7 @@ public class Ball : MonoBehaviour
         else if (Input.GetMouseButton(0) && isAfterPlayModeMouseDown)
         {
             // if the mouse is held, we use the direction and magnitude to transform that triangle
+            if(meg <= 0) return;
             trajectory.Show();
             trajectory.UpdateDots(rb.position, force);
             //triangle.SetActive(true);
