@@ -19,9 +19,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject OverlayMenu;
     Vector3 ballStartPosition;
     float[] rotate1Angles = {0, 0};
+    bool ballFirstShooted = false;
 
-
-     enum TutorialState {
+    enum TutorialState {
         Rotate1, ChangeState1, Shooting, ChangeState2, Rotate2, ChangeState3, GoodLuck, ReachGoal,
     }
     [SerializeField]
@@ -36,7 +36,7 @@ public class TutorialManager : MonoBehaviour
     void Update()
     {
         if(tutorialState == TutorialState.Rotate1){
-            bool tile0_rotated = !Mathf.Approximately(tile0.transform.eulerAngles.z, 180);
+            bool tile0_rotated = !Mathf.Approximately(tile0.transform.eulerAngles.z, 270);
             bool tile1_rotated = !Mathf.Approximately(tile1.transform.eulerAngles.z, 180);
             if(tile0_rotated || tile1_rotated){
                 // a tile is rotated
@@ -63,11 +63,17 @@ public class TutorialManager : MonoBehaviour
                 stateSwitchButton.GetComponent<Button>().enabled = false;
 
                 ballStartPosition = ball.transform.position;
+                ballFirstShooted = false;
                 tutorialState = TutorialState.Shooting;
             }
         }
         else if(tutorialState == TutorialState.Shooting){
-            if(Vector3.Distance(ball.transform.position, ballStartPosition) > 1){
+            bool isAtStartingPoint = Vector3.Distance(ball.transform.position, ballStartPosition) < 0.1;
+            Debug.Log(isAtStartingPoint);
+            if(!isAtStartingPoint){
+                ballFirstShooted = true;
+            }
+            if(ballFirstShooted && isAtStartingPoint){
                 // the ball is shooted
                 shootingHint.SetActive(false);
                 changeState2Hint.SetActive(true);
@@ -134,11 +140,5 @@ public class TutorialManager : MonoBehaviour
         else{
             Debug.LogError($"Unknown tutorial state {tutorialState}");
         }
-    }
-
-    void SetTileRotatable(bool enable)
-    {
-        tile0.GetComponent<Tile>().enabled = enable;
-        tile1.GetComponent<Tile>().enabled = enable;
     }
 }
