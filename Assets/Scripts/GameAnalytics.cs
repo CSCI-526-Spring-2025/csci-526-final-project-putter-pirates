@@ -13,6 +13,7 @@ public class GameAnalytics : MonoBehaviour
     private string databaseURL;
     public static GameAnalytics instance;
     private float aim = 10;
+    private int helpCount = 0;
     public TileInitializer tileinitializer;
 
     void Awake()
@@ -31,6 +32,7 @@ public class GameAnalytics : MonoBehaviour
         }
     }
 
+
     // 🔹 Track each shot during gameplay
     public void TrackShot()
     {
@@ -44,11 +46,10 @@ public class GameAnalytics : MonoBehaviour
         Debug.Log("Aim : " + aim);
     }
 
-    //  public void TrackSkipped()
-    // {
-    //     StartCoroutine(IncrementSkipCount());
-
-    // }
+    public void OnHelpButtonClicked()
+    {
+        StartCoroutine(IncrementHelpCount());
+    }
 
     // 🔹 Append the final shot count to Firebase at the end of the game
     public void AppendShotData()
@@ -138,75 +139,73 @@ private IEnumerator AppendAllStates()
 
     if (postRequest.result == UnityWebRequest.Result.Success)
     {
-        // Debug.Log("✅ Tile rotation states appended successfully!");
+        // Debug.Log("Tile rotation states appended successfully!");
     }
     else
     {
-        Debug.LogError("❌ Error appending rotation states: " + postRequest.error);
+        Debug.LogError("Error appending rotation states: " + postRequest.error);
     }
 }
 
-// private IEnumerator IncrementSkipCount()
-// {
-//     string getURL = databaseURL + "skip.json";
-//     Debug.Log($"Request URL: {getURL}");
+private IEnumerator IncrementHelpCount()
+{
+    string getURL = databaseURL + "help.json";
+    Debug.Log($"Request URL: {getURL}");
 
-//     UnityWebRequest getRequest = UnityWebRequest.Get(getURL);
-//     var operation = getRequest.SendWebRequest();
+    UnityWebRequest getRequest = UnityWebRequest.Get(getURL);
+    var operation = getRequest.SendWebRequest();
 
-//     // Use callback completion instead of yield directly
-//     bool isDone = false;
-//     operation.completed += (_) => isDone = true;
+    bool isDone = false;
+    operation.completed += (_) => isDone = true;
 
-//     while (!isDone)
-//     {
-//         yield return null;
-//     }
+    while (!isDone)
+    {
+        yield return null;
+    }
 
-//     if (getRequest.result != UnityWebRequest.Result.Success)
-//     {
-//         Debug.LogError("❌ Error fetching skip count: " + getRequest.error);
-//         yield break;
-//     }
+    if (getRequest.result != UnityWebRequest.Result.Success)
+    {
+        Debug.LogError("Error fetching help count: " + getRequest.error);
+        yield break;
+    }
 
-//     int currentSkipCount = 0;
-//     string resultText = getRequest.downloadHandler.text.Trim();
-//     Debug.Log($"Firebase response: '{resultText}'");
+    int currentHelpCount= 0;
+    string resultText = getRequest.downloadHandler.text.Trim();
+    Debug.Log($"Firebase response: '{resultText}'");
 
-//     if (resultText != "null" && int.TryParse(resultText, out currentSkipCount))
-//     {
-//         currentSkipCount += 1;
-//         Debug.Log($"Incremented SkipCount to {currentSkipCount}");
-//     }
-//     else
-//     {
-//         currentSkipCount = 0;
-//         Debug.Log($"Initialized SkipCount to {currentSkipCount}");
-//     }
+    if (resultText != "null" && int.TryParse(resultText, out currentHelpCount))
+    {
+        currentHelpCount += 1;
+        Debug.Log($"Incremented HelpCount to {currentHelpCount}");
+    }
+    else
+    {
+        currentHelpCount = 0;
+        Debug.Log($"Initialized HelpCount to {currentHelpCount}");
+    }
 
-//     // Update the value back
-//     string json = currentSkipCount.ToString();
-//     UnityWebRequest putRequest = UnityWebRequest.Put(getURL, json);
-//     putRequest.SetRequestHeader("Content-Type", "application/json");
+    string json = currentHelpCount.ToString();
+    UnityWebRequest putRequest = UnityWebRequest.Put(getURL, json);
+    putRequest.SetRequestHeader("Content-Type", "application/json");
 
-//     var putOperation = putRequest.SendWebRequest();
-//     isDone = false;
-//     putOperation.completed += (_) => isDone = true;
+    var putOperation = putRequest.SendWebRequest();
+    isDone = false;
+    putOperation.completed += (_) => isDone = true;
 
-//     while (!isDone)
-//     {
-//         yield return null;
-//     }
+    while (!isDone)
+    {
+        yield return null;
+    }
 
-//     if (putRequest.result == UnityWebRequest.Result.Success)
-//     {
-//         Debug.Log("✅ Skip count updated successfully to: " + currentSkipCount);
-//     }
-//     else
-//     {
-//         Debug.LogError("❌ Error updating skip count: " + putRequest.error);
-//     }
-// }
+    if (putRequest.result == UnityWebRequest.Result.Success)
+    {
+        Debug.Log("Help count updated successfully to: " + currentHelpCount);
+    }
+    else
+    {
+        Debug.LogError("Error updating help count: " + putRequest.error);
+    }
+}
 
 
 public void TrackGoalReached()
