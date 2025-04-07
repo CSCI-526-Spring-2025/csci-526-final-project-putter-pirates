@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
             if (collider2d.OverlapPoint(mousePosition))
             {
                 transform.Rotate(Vector3.forward, 90);
-                Debug.Log($"Tile clicked: Index = {index}");
+                // Debug.Log($"Tile clicked: Index = {index}");
             }
         }
     }

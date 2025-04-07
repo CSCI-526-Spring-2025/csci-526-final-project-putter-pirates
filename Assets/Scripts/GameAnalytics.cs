@@ -206,7 +206,50 @@ private IEnumerator AppendAllStates()
 // }
 
 
+public void TrackGoalReached()
+{
+    StartCoroutine(AppendCompletionData());
+    shotCount = 0;
 
+}
+
+private IEnumerator AppendCompletionData()
+{
+    if (tileinitializer == null || tileinitializer.tilesRotationStates == null)
+    {
+        Debug.LogWarning("Tileinitializer or tilesRotationStates not assigned!");
+        yield break;
+    }
+
+    List<int> tilesRotationStates = tileinitializer.tilesRotationStates;
+    string states = string.Join(", ", tilesRotationStates);
+    Debug.Log("🏁 Goal Reached - State: [" + states + "], Shots: " + shotCount);
+
+    string postURL = databaseURL + "completed.json";
+
+    // Construct JSON with both state and shots
+    string json = $"{{\"state\":[{states}], \"shots\":{shotCount}}}";
+
+    UnityWebRequest postRequest = new UnityWebRequest(postURL, "POST");
+    byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+    postRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+    postRequest.downloadHandler = new DownloadHandlerBuffer();
+    postRequest.SetRequestHeader("Content-Type", "application/json");
+
+    yield return postRequest.SendWebRequest();
+
+    if (postRequest.result == UnityWebRequest.Result.Success)
+    {
+        Debug.Log("Goal data appended successfully!");
+    }
+    else
+    {
+        Debug.LogError("Error appending goal data: " + postRequest.error);
+    }
+
+    // Optionally reset shot count if needed
+    shotCount = 0;
+}
 
 
 }

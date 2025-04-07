@@ -71,6 +71,7 @@ public class GameController : MonoBehaviour
 
         GameAnalytics.instance.AppendShotData();
         GameAnalytics.instance.AppendAimData();
+        GameAnalytics.instance.TrackGoalReached();
     }
 
     public void ToggleState()
