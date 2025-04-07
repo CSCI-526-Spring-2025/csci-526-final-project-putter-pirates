@@ -50,7 +50,6 @@ public class GameAnalytics : MonoBehaviour
     public void AppendShotData()
     {
         StartCoroutine(AppendShotCount(shotCount));
-        shotCount = 0;
     }
 
     private IEnumerator AppendShotCount(int finalShotCount)
