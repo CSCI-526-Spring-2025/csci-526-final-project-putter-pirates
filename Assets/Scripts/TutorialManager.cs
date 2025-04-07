@@ -69,7 +69,6 @@ public class TutorialManager : MonoBehaviour
         }
         else if(tutorialState == TutorialState.Shooting){
             bool isAtStartingPoint = Vector3.Distance(ball.transform.position, ballStartPosition) < 0.1;
-            Debug.Log(isAtStartingPoint);
             if(!isAtStartingPoint){
                 ballFirstShooted = true;
             }

@@ -9,10 +9,10 @@ public class LevelLoader : MonoBehaviour
     public bool isLevel0;
     public bool isLastLevel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         levelNum = SceneManager.GetActiveScene().buildIndex - level0Index;
-        isLevel0 = levelNum == level0Index;
+        isLevel0 = levelNum == 0;
         isLastLevel = SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings-1;
     }
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,10 @@ public class LevelUIManagement : MonoBehaviour
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+        
+        if(levelLoader.levelNum > 0){
+            transform.Find("OverlayMenu/LevelNumText").GetComponent<TextMeshProUGUI>().text = "Level " + levelLoader.levelNum;
+        }
     }
 
     void Update()
