@@ -15,11 +15,12 @@ public class Ball : MonoBehaviour
     Rigidbody2D rb;
     Vector3 ms_down_pos;
     Vector3 startPosition;
+    Vector3 referencePosition; // for measuring ball velocity after shoot
     GameController gameController;
     bool freezed = false;  // if the ball goes into the hole, it won't came back
     bool shooted = false;
     bool isAfterPlayModeMouseDown = true;
-    float smallVelocityContinuousTime = 0;
+    float lastVelocityMeasurementTime = 0;
 
     void Start()
     {
@@ -46,13 +47,14 @@ public class Ball : MonoBehaviour
         }
         if (shooted)
         {
-            if (rb.linearVelocity.magnitude < 0.2)
-            {
-                smallVelocityContinuousTime += Time.deltaTime;
-                // if the velocity is low for more than 0.2 seconds, reset position
-                if (smallVelocityContinuousTime > 0.2) gameController.ResetLevel();
+            if(Time.time - lastVelocityMeasurementTime > 0.2) {
+                float averageVelocity = (transform.position - referencePosition).magnitude / 0.2f;
+                lastVelocityMeasurementTime = Time.time;
+                referencePosition = transform.position;
+
+                // if the velocity is low, reset position
+                if(averageVelocity < 0.1) gameController.ResetLevel();
             }
-            else smallVelocityContinuousTime = 0;
             return;
         }
 
@@ -89,6 +91,8 @@ public class Ball : MonoBehaviour
             
             //rb.AddForce(force, ForceMode2D.Force);
             //Debug.Log("added force: " + force);
+            lastVelocityMeasurementTime = Time.time;
+            referencePosition = transform.position;
 
             shooted = true;
             lastpath.GetComponent<LastPath>().StartRecording();
