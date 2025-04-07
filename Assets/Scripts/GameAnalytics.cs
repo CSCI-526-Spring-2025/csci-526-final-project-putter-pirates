@@ -12,7 +12,7 @@ public class GameAnalytics : MonoBehaviour
     // private int skipped = 0;
     private string databaseURL;
     public static GameAnalytics instance;
-    private float aim;
+    private float aim = 10;
     public TileInitializer tileinitializer;
 
     void Awake()
