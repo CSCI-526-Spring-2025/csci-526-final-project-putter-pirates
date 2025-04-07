@@ -11,12 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelTutorial.unity
     guid: c54712fdd4f9c4fe083a5eb12f2b0404
-  - enabled: 0
-    path: Assets/Scenes/Level0.unity
-    guid: 7a4c9aa25b5314d7bb995cfb143b7582
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: c16fe7bb3cde646598ced4d10576543b
+  - enabled: 1
+    path: Assets/Scenes/LevelWindTutorial.unity
+    guid: 7b699ddaf24104d398d315a44951b469
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
@@ -33,8 +33,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Level6.unity
     guid: c48c3477679b246ee85f9d5d50b44573
   - enabled: 1
+    path: Assets/Scenes/LevelElectricityIntro.unity
+    guid: 45ff95a81d574420b8ac2aca398d4568
+  - enabled: 1
     path: Assets/Scenes/Level7.unity
     guid: deeede586be124fea904032753da7647
+  - enabled: 1
+    path: Assets/Scenes/LevelElectricWindIntro.unity
+    guid: 6040af7c617d8483e8e1b1f00c00b923
   - enabled: 1
     path: Assets/Scenes/Level8.unity
     guid: 7fca774c9c258478b88642034cd8db55
@@ -42,8 +48,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Level9.unity
     guid: 18de348d519bc404ebf4006bbe3dcdbb
   - enabled: 0
-    path: Assets/Scenes/Level0.5.unity
-    guid: cfa3d102c10c3473e9fe751fa31eeca1
+    path: Assets/Scenes/Level0.unity
+    guid: 7a4c9aa25b5314d7bb995cfb143b7582
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

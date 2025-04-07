@@ -36,7 +36,7 @@ public class FadeCanvas : MonoBehaviour
         FadeIn();
         yield return new WaitForSeconds(3);
         FadeOut();
-        levelLoader.LoadLevel(1);
+        levelLoader.LoadLevel(0);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public const int level0Index = 0;
+    public const int level0Index = 1;
     public int levelNum;
     public bool isLevel0;
     public bool isLastLevel;
