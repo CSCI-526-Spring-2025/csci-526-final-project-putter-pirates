@@ -13,7 +13,7 @@ public class GameAnalytics : MonoBehaviour
     private string databaseURL;
     public static GameAnalytics instance;
     private float aim = 10;
-    private int helpCount = 0;
+    private int helpCount = 1;
     public TileInitializer tileinitializer;
 
     void Awake()

@@ -23,7 +23,7 @@ public class TileInitializer : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        InitializeTileIndices();
+        // InitializeTileIndices();
     }
 
     void InitializeTileIndices()
