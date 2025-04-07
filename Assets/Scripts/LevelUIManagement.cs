@@ -17,6 +17,11 @@ public class LevelUIManagement : MonoBehaviour
         if(levelLoader.levelNum > 0){
             transform.Find("OverlayMenu/LevelNumText").GetComponent<TextMeshProUGUI>().text = "Level " + levelLoader.levelNum;
         }
+
+        transform.Find("OverlayMenu/PrevButton").GetComponent<Button>().interactable = !levelLoader.isLevel0;
+        transform.Find("LevelClearPanel/PrevButton").GetComponent<Button>().interactable = !levelLoader.isLevel0;
+        transform.Find("OverlayMenu/NextButton").GetComponent<Button>().interactable = !levelLoader.isLastLevel;
+        transform.Find("LevelClearPanel/NextButton").GetComponent<Button>().interactable = !levelLoader.isLastLevel;
     }
 
     void Update()
