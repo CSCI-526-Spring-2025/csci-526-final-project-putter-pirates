@@ -19,10 +19,10 @@ public class GameAnalytics : MonoBehaviour
     void Awake()
     {
         levelNum = SceneManager.GetActiveScene().buildIndex - 1;
-        if(levelNum == 13){
-            // update when more levels are added
-            levelNum = 0;
-        }
+        // if(levelNum == 13){
+        //     // update when more levels are added
+        //     levelNum = 0;
+        // }
         tileinitializer = FindObjectOfType<TileInitializer>();
         databaseURL = $"https://putterdatabase-default-rtdb.firebaseio.com/analytics/level{levelNum}/";
         Debug.Log("🎯 Level " + levelNum);
