@@ -684,8 +684,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_text
-      value: "Electricity is transmitted through wires. \nPurple doors disappear
-        when connected to electricity."
+      value: "Electricity is transmitted through wires. \nFans can be turned on/off
+        with electricity"
       objectReference: {fileID: 0}
     - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_fontSize
