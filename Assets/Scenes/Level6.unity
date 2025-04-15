@@ -4279,7 +4279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  height: 4
+  height: 3.2
   margin: 0.5
 --- !u!212 &1966944764
 SpriteRenderer:
