@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject rotate1Hint;
     [SerializeField] GameObject changeState1Hint;
     [SerializeField] GameObject shootingHint;
+    [SerializeField] GameObject resetBallHint;
     [SerializeField] GameObject changeState2Hint;
     [SerializeField] GameObject rotate2Hint;
     [SerializeField] GameObject changeState3Hint;
@@ -16,13 +17,17 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject tile0;
     [SerializeField] GameObject tile1;
     [SerializeField] GameObject stateSwitchButton;
-    [SerializeField] GameObject OverlayMenu;
+    [SerializeField] GameObject overlayMenu;
+    [SerializeField] float waitingTime = 0.5f;
     Vector3 ballStartPosition;
     float[] rotate1Angles = {0, 0};
-    bool ballFirstShooted = false;
+    float rotateTriggeredTime = 0;
+    float resetTriggeredTime = 0;
+    bool rotateTriggered = false;
+    bool resetTriggered = false;
 
     enum TutorialState {
-        Rotate1, ChangeState1, Shooting, ChangeState2, Rotate2, ChangeState3, GoodLuck, ReachGoal,
+        Rotate1, ChangeState1, Shooting, ResetBall, ChangeState2, Rotate2, ChangeState3, GoodLuck, ReachGoal,
     }
     [SerializeField]
     TutorialState tutorialState;
@@ -31,6 +36,7 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialState = TutorialState.Rotate1;
         gameController.enabled = false; // block switching state with space bar
+        rotateTriggered = false;
     }
 
     void Update()
@@ -38,16 +44,21 @@ public class TutorialManager : MonoBehaviour
         if(tutorialState == TutorialState.Rotate1){
             bool tile0_rotated = !Mathf.Approximately(tile0.transform.eulerAngles.z, 270);
             bool tile1_rotated = !Mathf.Approximately(tile1.transform.eulerAngles.z, 180);
-            if(tile0_rotated || tile1_rotated){
-                // a tile is rotated
+            if((tile0_rotated || tile1_rotated) && !rotateTriggered){
+                // a tile is rotated, wait 0.5s
                 rotate1Hint.SetActive(false);
-                changeState1Hint.SetActive(true);
-
                 tile0.GetComponent<Tile>().enabled = false;
                 tile1.GetComponent<Tile>().enabled = false;
+                rotateTriggeredTime = Time.time;
+                rotateTriggered = true;
+            }
+            if(rotateTriggered && Time.time - rotateTriggeredTime > waitingTime){
+                changeState1Hint.SetActive(true);
+
                 stateSwitchButton.SetActive(true);
                 gameController.enabled = true;
 
+                rotateTriggered = false;
                 tutorialState = TutorialState.ChangeState1;
             }
         }
@@ -63,21 +74,33 @@ public class TutorialManager : MonoBehaviour
                 stateSwitchButton.GetComponent<Button>().enabled = false;
 
                 ballStartPosition = ball.transform.position;
-                ballFirstShooted = false;
                 tutorialState = TutorialState.Shooting;
             }
         }
         else if(tutorialState == TutorialState.Shooting){
-            bool isAtStartingPoint = Vector3.Distance(ball.transform.position, ballStartPosition) < 0.1;
-            if(!isAtStartingPoint){
-                ballFirstShooted = true;
-            }
-            if(ballFirstShooted && isAtStartingPoint){
+            float ball_velocity = ball.GetComponent<Rigidbody2D>().linearVelocity.magnitude;
+            if(Vector3.Distance(ball.transform.position, ballStartPosition) > 0.1 && ball_velocity < 0.1){
                 // the ball is shooted
                 shootingHint.SetActive(false);
-                changeState2Hint.SetActive(true);
+                resetBallHint.SetActive(true);
 
                 ball.GetComponent<Ball>().enabled = false;
+                
+                resetTriggered = false;
+                tutorialState = TutorialState.ResetBall;
+            }
+        }
+        else if(tutorialState == TutorialState.ResetBall){
+            if(Input.GetKeyDown(KeyCode.R)){
+                gameController.ResetLevel();
+                resetTriggeredTime = Time.time;
+                resetTriggered = true;
+
+                resetBallHint.SetActive(false);
+            }
+            if(resetTriggered && Time.time - resetTriggeredTime > waitingTime){
+                changeState2Hint.SetActive(true);
+
                 gameController.enabled = true;
                 stateSwitchButton.GetComponent<Button>().enabled = true;
                 
@@ -118,8 +141,8 @@ public class TutorialManager : MonoBehaviour
                 changeState3Hint.SetActive(false);
                 goodLuckHint.SetActive(true);
 
-                for(int i=0;i<OverlayMenu.transform.childCount;i++){
-                    OverlayMenu.transform.GetChild(i).gameObject.SetActive(true);
+                for(int i=0;i<overlayMenu.transform.childCount;i++){
+                    overlayMenu.transform.GetChild(i).gameObject.SetActive(true);
                 }
 
                 tutorialState = TutorialState.GoodLuck;
