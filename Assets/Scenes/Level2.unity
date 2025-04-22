@@ -1396,7 +1396,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1213775252212400728, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_Name
-      value: WindZone
+      value: WindZone (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6517472360910613977, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1462,7 +1462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1213775252212400728, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_Name
-      value: WindZone2 (1)
+      value: WindZone
       objectReference: {fileID: 0}
     - target: {fileID: 6517472360910613977, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3909,7 +3909,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1213775252212400728, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_Name
-      value: WindZone2 (2)
+      value: WindZone (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1213775252212400728, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_IsActive
