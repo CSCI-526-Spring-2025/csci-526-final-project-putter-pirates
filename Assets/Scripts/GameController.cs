@@ -37,12 +37,12 @@ public class GameController : MonoBehaviour
 
         ball.SetActive(!isRotateState);
         fakeBall.SetActive(isRotateState);
-        topLayer.SetActive(isRotateState);
-        if (topLayer1 != null && topLayer2 != null)
-        {
-            topLayer1.SetActive(isRotateState);
-            topLayer2.SetActive(isRotateState);
-        }
+        // topLayer.SetActive(isRotateState);
+        //if (topLayer1 != null && topLayer2 != null)
+        //{
+        //    topLayer1.SetActive(isRotateState);
+        //    topLayer2.SetActive(isRotateState);
+        //}
         goalEffect.SetActive(!isGameState);
 
     }
@@ -76,8 +76,8 @@ public class GameController : MonoBehaviour
 
     public void ToggleState()
     {
-        if(!isGameState) return;
-        
+        if (!isGameState) return;
+
         isRotateState = !isRotateState;
         Debug.Log("isRotateState: " + isRotateState);
 
@@ -86,12 +86,12 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().SetStartPosition(ball.transform.position);
         ball.GetComponent<Ball>().ResetPosition();
         fakeBall.SetActive(isRotateState);
-        topLayer.SetActive(isRotateState);
-        if (topLayer1 != null && topLayer2 != null)
-        {
-            topLayer1.SetActive(isRotateState);
-            topLayer2.SetActive(isRotateState);
-        }
+        //topLayer.SetActive(isRotateState);
+        //if (topLayer1 != null && topLayer2 != null)
+        //{
+        //    topLayer1.SetActive(isRotateState);
+        //    topLayer2.SetActive(isRotateState);
+        //}
         goal.GetComponent<Goal>().flipFreeze();
     }
 
