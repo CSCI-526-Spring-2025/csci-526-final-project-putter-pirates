@@ -825,6 +825,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 1579056318439407552, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579056318439407552, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1867507893185689930, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_text
       value: Some goals can move!
@@ -956,6 +964,18 @@ PrefabInstance:
     - target: {fileID: 6844272168693787959, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Name
       value: CanvasMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997387085116444522, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997387085116444522, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997387085116444522, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8187478518651075021, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_text
