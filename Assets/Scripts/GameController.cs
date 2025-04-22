@@ -37,12 +37,12 @@ public class GameController : MonoBehaviour
 
         ball.SetActive(!isRotateState);
         fakeBall.SetActive(isRotateState);
-        // topLayer.SetActive(isRotateState);
-        //if (topLayer1 != null && topLayer2 != null)
-        //{
-        //    topLayer1.SetActive(isRotateState);
-        //    topLayer2.SetActive(isRotateState);
-        //}
+        topLayer.SetActive(isRotateState);
+        if (topLayer1 != null && topLayer2 != null)
+        {
+            topLayer1.SetActive(isRotateState);
+            topLayer2.SetActive(isRotateState);
+        }
         goalEffect.SetActive(!isGameState);
 
     }
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
         goalEffect.SetActive(true);
-        // levelLoader.GetComponent<LevelLoader>().LoadNextDelayed();
+        levelLoader.GetComponent<LevelLoader>().LoadNextDelayed();
         levelUIManagement.StartLevelClearUIRoutine();
         isGameState = false;
 
@@ -86,12 +86,12 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().SetStartPosition(ball.transform.position);
         ball.GetComponent<Ball>().ResetPosition();
         fakeBall.SetActive(isRotateState);
-        //topLayer.SetActive(isRotateState);
-        //if (topLayer1 != null && topLayer2 != null)
-        //{
-        //    topLayer1.SetActive(isRotateState);
-        //    topLayer2.SetActive(isRotateState);
-        //}
+        topLayer.SetActive(isRotateState);
+        if (topLayer1 != null && topLayer2 != null)
+        {
+            topLayer1.SetActive(isRotateState);
+            topLayer2.SetActive(isRotateState);
+        }
         goal.GetComponent<Goal>().flipFreeze();
     }
 
