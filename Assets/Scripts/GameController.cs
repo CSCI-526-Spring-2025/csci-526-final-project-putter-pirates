@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -13,7 +12,6 @@ public class GameController : MonoBehaviour
     GameObject topLayer2;
     GameObject goalEffect;
     GameObject goal;
-    GameObject levelLoader;
     LevelUIManagement levelUIManagement;
     ElectricityManager electricityManager = null;
 
@@ -27,7 +25,6 @@ public class GameController : MonoBehaviour
         topLayer2 = GameObject.Find("TopLayer2");
         goalEffect = GameObject.Find("GoalEffect");
         goal = GameObject.Find("Goal");
-        levelLoader = GameObject.Find("LevelLoader");
 
         levelUIManagement = GameObject.Find("CanvasMenu").GetComponent<LevelUIManagement>();
         if (GameObject.Find("ElectricityManager") != null)
@@ -65,7 +62,6 @@ public class GameController : MonoBehaviour
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
         goalEffect.SetActive(true);
-        levelLoader.GetComponent<LevelLoader>().LoadNextDelayed();
         levelUIManagement.StartLevelClearUIRoutine();
         isGameState = false;
 
