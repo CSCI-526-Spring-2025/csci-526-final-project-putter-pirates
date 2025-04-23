@@ -93,6 +93,7 @@ public class GameController : MonoBehaviour
             topLayer2.SetActive(isRotateState);
         }
         goal.GetComponent<Goal>().flipFreeze();
+        if (electricityManager != null) electricityManager.ResetButtons();
     }
 
     public void ResetLevel()
