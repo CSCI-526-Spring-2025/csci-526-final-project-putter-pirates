@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     GameObject topLayer2;
     GameObject goalEffect;
     GameObject goal;
+    Trajectory trajectory;
     LevelUIManagement levelUIManagement;
     ElectricityManager electricityManager = null;
 
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
         goalEffect = GameObject.Find("GoalEffect");
         goal = GameObject.Find("Goal");
 
+        trajectory = GameObject.Find("Trajectory").GetComponent<Trajectory>();
         levelUIManagement = GameObject.Find("CanvasMenu").GetComponent<LevelUIManagement>();
         if (GameObject.Find("ElectricityManager") != null)
         {
@@ -89,6 +91,7 @@ public class GameController : MonoBehaviour
             topLayer2.SetActive(isRotateState);
         }
         goal.GetComponent<Goal>().flipFreeze();
+        if (isRotateState) trajectory.Hide();
         if (electricityManager != null) electricityManager.ResetButtons();
     }
 
