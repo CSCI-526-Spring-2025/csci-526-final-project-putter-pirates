@@ -123,7 +123,7 @@ public class Ball : MonoBehaviour
     public void Freeze()
     {
         freezed = true;
-        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
     }
 
     public void ResetPosition()
@@ -133,6 +133,7 @@ public class Ball : MonoBehaviour
         rb.gravityScale = 0;
         shooted = false;
         freezed = false;
+        rb.simulated = true;
         isAfterPlayModeMouseDown = false;
         lastpath.GetComponent<LastPath>().StopRecording();
     }
