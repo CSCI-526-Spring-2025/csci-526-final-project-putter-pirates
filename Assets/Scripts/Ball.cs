@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour
         lastpath = GameObject.Find("LastPath");
         // triangle = transform.Find("Triangle").gameObject;
         trajectory = GameObject.Find("Trajectory").GetComponent<Trajectory>();
-        
+ 
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0; // prevent the ball from falling before shoot
 
@@ -99,6 +99,10 @@ public class Ball : MonoBehaviour
             GameAnalytics.instance.TrackShot();
             FindObjectOfType<TileInitializer>().PrintTilesRotationState();
             GameAnalytics.instance.AppendStateData();
+
+
+            FindObjectOfType<HintButtonManager>().OnBallShot();
+
             // GameAnalytics.instance.PrintTileStates();
 
         }
