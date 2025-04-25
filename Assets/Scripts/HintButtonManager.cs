@@ -10,7 +10,6 @@ public class HintButtonManager : MonoBehaviour
 
     void Start()
     {
-        // Ensure the button starts locked
         if (hintButton != null)
         {
             hintButton.interactable = false;
@@ -35,21 +34,29 @@ public class HintButtonManager : MonoBehaviour
     {
         hintUnlocked = true;
         hintButton.interactable = true;
-        StartCoroutine(FlashHintButton());
+        StartCoroutine(PulseHintButton());
     }
 
-    IEnumerator FlashHintButton()
+    IEnumerator PulseHintButton()
     {
-        Image btnImage = hintButton.GetComponent<Image>();
-        Color originalColor = btnImage.color;
-        Color flashColor = Color.yellow;
+        Transform buttonTransform = hintButton.transform;
+        Vector3 originalScale = buttonTransform.localScale;
+        float pulseSpeed = 4f;    // Speed of pulsing
+        float pulseAmount = 0.1f; // How much to grow/shrink
 
-        for (int i = 0; i < 6; i++) // Flash 3 times
+        float timer = 0f;
+        float duration = 5f; // Pulse for 3 seconds total
+
+        while (timer < duration)
         {
-            btnImage.color = flashColor;
-            yield return new WaitForSeconds(0.2f);
-            btnImage.color = originalColor;
-            yield return new WaitForSeconds(0.2f);
+            float scale = 1 + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
+            buttonTransform.localScale = originalScale * scale;
+
+            timer += Time.deltaTime;
+            yield return null;
         }
+
+        // Reset the button scale back to normal
+        buttonTransform.localScale = originalScale;
     }
 }
