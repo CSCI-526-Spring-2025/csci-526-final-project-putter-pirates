@@ -21,6 +21,12 @@ public class HintButtonManager : MonoBehaviour
         }
     }
 
+    // for testing faster
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F) ) UnlockHint();
+    }
+
     public void OnBallShot()
     {
         shotCount++;
@@ -43,7 +49,7 @@ public class HintButtonManager : MonoBehaviour
         Transform buttonTransform = hintButton.transform;
         Vector3 originalScale = buttonTransform.localScale;
         float pulseSpeed = 4f;    // Speed of pulsing
-        float pulseAmount = 0.1f; // How much to grow/shrink
+        float pulseAmount = 0.2f; // How much to grow/shrink
 
         float timer = 0f;
         float duration = 5f; // Pulse for 3 seconds total
