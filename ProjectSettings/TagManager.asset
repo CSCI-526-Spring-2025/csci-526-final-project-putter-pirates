@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TileBackGround
   - Grass
+  - TileBoundary
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using TMPro;
 public class ModeSwithBtn : MonoBehaviour
 {
     GameController gc;
-    TextMeshProUGUI textMeshPro;
+    public TextMeshProUGUI textMeshPro;
 
     // SpriteRenderer background;
     private Color32 rotateModeColor = new Color32(0, 36, 162, 255);   // #0036F1

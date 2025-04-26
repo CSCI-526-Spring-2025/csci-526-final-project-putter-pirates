@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
     public bool isPaused = false;
     GameObject ball;        // in "rotate state", the fakeball without physics would be activated (to prevent falling), 
     GameObject fakeBall;    // in "play state" the real ball with physics would be activated
-    GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
+    //GameObject topLayer;    // the transparent layer to visually distinguish rotate mode and normal mode
     GameObject topLayer1;
     GameObject topLayer2;
     GameObject goalEffect;
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     {
         ball = GameObject.Find("Ball");
         fakeBall = GameObject.Find("FakeBall");
-        topLayer = GameObject.Find("TopLayer");
+        // topLayer = GameObject.Find("TopLayer");
         topLayer1 = GameObject.Find("TopLayer1");
         topLayer2 = GameObject.Find("TopLayer2");
         goalEffect = GameObject.Find("GoalEffect");
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
 
         ball.SetActive(!isRotateState);
         fakeBall.SetActive(isRotateState);
-        topLayer.SetActive(isRotateState);
+        // topLayer.SetActive(isRotateState);
         if (topLayer1 != null && topLayer2 != null)
         {
             topLayer1.SetActive(isRotateState);
@@ -69,6 +69,7 @@ public class GameController : MonoBehaviour
     {
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
+        ball.SetActive(false);
         goalEffect.SetActive(true);
         levelUIManagement.StartLevelClearUIRoutine();
         isGameState = false;
@@ -90,7 +91,7 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().SetStartPosition(ball.transform.position);
         ball.GetComponent<Ball>().ResetPosition();
         fakeBall.SetActive(isRotateState);
-        topLayer.SetActive(isRotateState);
+        // topLayer.SetActive(isRotateState);
         if (topLayer1 != null && topLayer2 != null)
         {
             topLayer1.SetActive(isRotateState);
@@ -102,7 +103,7 @@ public class GameController : MonoBehaviour
 
         if (flipColorManager != null)
         {
-            flipColorManager.Flip();
+            flipColorManager.Flip(isRotateState);
         }
     }
 
