@@ -7,6 +7,7 @@ public class HintButtonManager : MonoBehaviour
     public Button hintButton;
     private int shotCount = 0;
     private bool hintUnlocked = false;
+    public TileInitializer tileInitializer;
 
     void Start()
     {
@@ -59,4 +60,11 @@ public class HintButtonManager : MonoBehaviour
         // Reset the button scale back to normal
         buttonTransform.localScale = originalScale;
     }
+
+    public void OnHelpButtonClicked()
+    {
+        Debug.Log("Helpppppppp");
+        tileInitializer.LockNextUnlockedTile();
+    }
+
 }

@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-
 
 public class Tile : MonoBehaviour
 {
@@ -8,18 +6,23 @@ public class Tile : MonoBehaviour
     Collider2D collider2d;
     public int index;
     public float rotation;
+    public bool isLocked = false;
+
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         gc = GameObject.Find("GameController");
         collider2d = GetComponent<Collider2D>();
         rotation = transform.eulerAngles.z;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if (!gc.GetComponent<GameController>().isRotateState) return;
-        if (gc.GetComponent<GameController>().isPaused) return;
+        if (!gc.GetComponent<GameController>().isRotateState || gc.GetComponent<GameController>().isPaused) return;
+        if (isLocked) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -28,8 +31,18 @@ public class Tile : MonoBehaviour
             if (collider2d.OverlapPoint(mousePosition))
             {
                 transform.Rotate(Vector3.forward, 90);
-                // Debug.Log($"Tile clicked: Index = {index}");
             }
         }
+    }
+
+    public void LockTile()
+    {
+        isLocked = true;
+
+        // Change to blue to show it’s locked
+        if (spriteRenderer != null)
+            // spriteRenderer.color = Color.gray;
+            spriteRenderer.color = new Color(0.2f, 0.4f, 1f); // stronger blue
+
     }
 }

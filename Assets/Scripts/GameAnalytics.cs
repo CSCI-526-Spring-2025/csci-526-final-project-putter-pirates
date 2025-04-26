@@ -171,17 +171,17 @@ private IEnumerator IncrementHelpCount()
 
     int currentHelpCount= 0;
     string resultText = getRequest.downloadHandler.text.Trim();
-    Debug.Log($"Firebase response: '{resultText}'");
+    // Debug.Log($"Firebase response: '{resultText}'");
 
     if (resultText != "null" && int.TryParse(resultText, out currentHelpCount))
     {
         currentHelpCount += 1;
-        Debug.Log($"Incremented HelpCount to {currentHelpCount}");
+        // Debug.Log($"Incremented HelpCount to {currentHelpCount}");
     }
     else
     {
         currentHelpCount = 0;
-        Debug.Log($"Initialized HelpCount to {currentHelpCount}");
+        // Debug.Log($"Initialized HelpCount to {currentHelpCount}");
     }
 
     string json = currentHelpCount.ToString();

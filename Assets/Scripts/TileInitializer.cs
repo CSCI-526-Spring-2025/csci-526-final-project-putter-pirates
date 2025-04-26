@@ -48,6 +48,23 @@ public class TileInitializer : MonoBehaviour
         Debug.Log($"Tile indices initialized for level: {SceneManager.GetActiveScene().name}");
     }
 
+    public void LockNextUnlockedTile()
+    {
+    foreach (Transform tile in tileParent.transform)
+    {
+        var tileScript = tile.GetComponent<Tile>();
+        if (tileScript != null && !tileScript.isLocked)
+        {
+            tileScript.LockTile();
+            Debug.Log($"🔒 Locked tile {tileScript.index}");
+            return;
+        }
+    }
+
+    Debug.Log("✅ All tiles already locked.");
+    }
+    
+
 public List<int> tilesRotationStates = new List<int>();
 
 public void PrintTilesRotationState()
