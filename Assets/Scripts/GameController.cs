@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     Trajectory trajectory;
     LevelUIManagement levelUIManagement;
     ElectricityManager electricityManager = null;
+    FlipColorManager flipColorManager = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +27,11 @@ public class GameController : MonoBehaviour
         topLayer2 = GameObject.Find("TopLayer2");
         goalEffect = GameObject.Find("GoalEffect");
         goal = GameObject.Find("Goal");
+        if (GameObject.Find("FlipColorManager") != null)
+        {
+            flipColorManager = GameObject.Find("FlipColorManager").GetComponent<FlipColorManager>();
+
+        }
 
         trajectory = GameObject.Find("Trajectory").GetComponent<Trajectory>();
         levelUIManagement = GameObject.Find("CanvasMenu").GetComponent<LevelUIManagement>();
@@ -93,6 +99,11 @@ public class GameController : MonoBehaviour
         goal.GetComponent<Goal>().flipFreeze();
         if (isRotateState) trajectory.Hide();
         if (electricityManager != null) electricityManager.ResetButtons();
+
+        if (flipColorManager != null)
+        {
+            flipColorManager.Flip();
+        }
     }
 
     public void ResetLevel()
