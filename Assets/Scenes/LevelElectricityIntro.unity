@@ -623,6 +623,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5911772382653821711, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911772382653821711, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911772382653821711, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 122535372}
+    - target: {fileID: 5911772382653821711, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnHelpButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911772382653821711, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HintButtonManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911772382653821711, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911772382653821711, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6844272168693787959, guid: c4fd3b95216a64bc3b708c90999eb6a7, type: 3}
       propertyPath: m_Name
       value: CanvasMenu
@@ -688,7 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hintButton: {fileID: 122535371}
-  tileInitializer: {fileID: 0}
+  tileInitializer: {fileID: 565919746}
 --- !u!1 &141968303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileParent: {fileID: 932675750}
-  lockingOrder: []
+  lockingOrder:
+  - {fileID: 1560022908}
+  - {fileID: 1037457643}
   tilesRotationStates: 
 --- !u!4 &565919747
 Transform:
@@ -1827,6 +1857,79 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &650593495
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 534093839881391746, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: tileinitializer
+      value: 
+      objectReference: {fileID: 565919746}
+    - target: {fileID: 1252200414717084270, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: hintButton
+      value: 
+      objectReference: {fileID: 122535371}
+    - target: {fileID: 1252200414717084270, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: tileInitializer
+      value: 
+      objectReference: {fileID: 565919746}
+    - target: {fileID: 3113328681925067624, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: tileParent
+      value: 
+      objectReference: {fileID: 932675750}
+    - target: {fileID: 6748099268075637794, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_Name
+      value: TileLockManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 382.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 239
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048000987829873143, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 30b5747c302034d24bcb1f1ffffb9160, type: 3}
 --- !u!4 &661625725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7361866746189145363, guid: 8a1af05b666794160a9fc6af67eb766c, type: 3}
@@ -2396,7 +2499,7 @@ MonoBehaviour:
   index: 0
   rotation: 0
   isLocked: 0
-  goalState: 0
+  goalState: 2
 --- !u!61 &1037457644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3859,7 +3962,7 @@ MonoBehaviour:
   index: 0
   rotation: 0
   isLocked: 0
-  goalState: 0
+  goalState: 1
 --- !u!212 &1560022909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5445,3 +5548,4 @@ SceneRoots:
   - {fileID: 122535368}
   - {fileID: 1694752990}
   - {fileID: 1187813274}
+  - {fileID: 650593495}
