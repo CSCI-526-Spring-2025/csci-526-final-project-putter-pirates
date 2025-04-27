@@ -642,6 +642,7 @@ MonoBehaviour:
   index: 0
   rotation: 0
   isLocked: 0
+  goalState: 2
 --- !u!212 &413791607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2134,6 +2135,7 @@ MonoBehaviour:
   index: 0
   rotation: 0
   isLocked: 0
+  goalState: 0
 --- !u!61 &1037457644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2679,6 +2681,7 @@ MonoBehaviour:
   index: 0
   rotation: 0
   isLocked: 0
+  goalState: 1
 --- !u!61 &1192041019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3570,6 +3573,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileParent: {fileID: 1790334756}
+  lockingOrder:
+  - {fileID: 1192041018}
+  - {fileID: 413791606}
+  - {fileID: 1037457643}
   tilesRotationStates: 
 --- !u!4 &1736053733
 Transform:

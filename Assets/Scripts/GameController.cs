@@ -91,7 +91,7 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Ball>().SetStartPosition(ball.transform.position);
         ball.GetComponent<Ball>().ResetPosition();
         fakeBall.SetActive(isRotateState);
-        // topLayer.SetActive(isRotateState);
+
         if (topLayer1 != null && topLayer2 != null)
         {
             topLayer1.SetActive(isRotateState);
@@ -104,6 +104,12 @@ public class GameController : MonoBehaviour
         if (flipColorManager != null)
         {
             flipColorManager.Flip(isRotateState);
+        }
+
+        Tile[] allTiles = FindObjectsOfType<Tile>();
+        foreach (var tile in allTiles)
+        {
+            tile.RefreshColor();
         }
     }
 

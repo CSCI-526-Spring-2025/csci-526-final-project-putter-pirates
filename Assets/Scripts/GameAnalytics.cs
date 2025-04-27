@@ -23,7 +23,7 @@ public class GameAnalytics : MonoBehaviour
         //     // update when more levels are added
         //     levelNum = 0;
         // }
-        tileinitializer = FindObjectOfType<TileInitializer>();
+        tileinitializer = Object.FindFirstObjectByType<TileInitializer>();
         databaseURL = $"https://putterdatabase-default-rtdb.firebaseio.com/analytics/level{levelNum}/";
         Debug.Log("🎯 Level " + levelNum);
         if (instance == null)

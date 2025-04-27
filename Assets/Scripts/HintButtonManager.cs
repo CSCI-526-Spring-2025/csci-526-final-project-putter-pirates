@@ -21,10 +21,9 @@ public class HintButtonManager : MonoBehaviour
         }
     }
 
-    // for testing faster
-    private void Update()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) ) UnlockHint();
+        if (Input.GetKeyDown(KeyCode.F)) UnlockHint(); // For testing unlock faster
     }
 
     public void OnBallShot()
@@ -48,11 +47,11 @@ public class HintButtonManager : MonoBehaviour
     {
         Transform buttonTransform = hintButton.transform;
         Vector3 originalScale = buttonTransform.localScale;
-        float pulseSpeed = 4f;    // Speed of pulsing
-        float pulseAmount = 0.2f; // How much to grow/shrink
+        float pulseSpeed = 4f;
+        float pulseAmount = 0.2f;
 
         float timer = 0f;
-        float duration = 5f; // Pulse for 3 seconds total
+        float duration = 5f;
 
         while (timer < duration)
         {
@@ -63,14 +62,13 @@ public class HintButtonManager : MonoBehaviour
             yield return null;
         }
 
-        // Reset the button scale back to normal
         buttonTransform.localScale = originalScale;
     }
 
     public void OnHelpButtonClicked()
     {
         Debug.Log("Helpppppppp");
-        tileInitializer.LockNextUnlockedTile();
+        tileInitializer.LockNextTileInOrder();
+        GameAnalytics.instance.OnHelpButtonClicked(); // Track help usage
     }
-
 }
