@@ -1,29 +1,18 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class TileInitializer : MonoBehaviour
 {
     public GameObject tileParent;
 
+    public List<Tile> lockingOrder = new List<Tile>(); // Manual hint lock order
+    private int nextTileToLockIndex = 0;
+
+    public List<int> tilesRotationStates = new List<int>(); // For analytics
+
     void Start()
-{
-    InitializeTileIndices(); // for when the game starts in this scene
-}
-
-    void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // InitializeTileIndices();
+        InitializeTileIndices();
     }
 
     void InitializeTileIndices()
@@ -42,78 +31,58 @@ public class TileInitializer : MonoBehaviour
             {
                 tileScript.index = index++;
             }
-            Debug.Log("Tilescript : " + tileScript.index);
         }
-
-        Debug.Log($"Tile indices initialized for level: {SceneManager.GetActiveScene().name}");
     }
 
-    public void LockNextUnlockedTile()
+    public void LockNextTileInOrder()
     {
-    foreach (Transform tile in tileParent.transform)
-    {
-        var tileScript = tile.GetComponent<Tile>();
-        if (tileScript != null && !tileScript.isLocked)
+        if (nextTileToLockIndex >= lockingOrder.Count)
         {
-            tileScript.LockTile();
-            Debug.Log($"🔒 Locked tile {tileScript.index}");
+            Debug.Log("✅ All tiles already locked.");
             return;
         }
-    }
 
-    Debug.Log("✅ All tiles already locked.");
-    }
-    
+        Tile tileToLock = lockingOrder[nextTileToLockIndex];
 
-public List<int> tilesRotationStates = new List<int>();
-
-public void PrintTilesRotationState()
-{
-    if (tileParent == null)
-    {
-        Debug.LogError("Tile parent is not assigned!");
-        return;
-    }
-
-    // Find max index to correctly size the list
-    int maxIndex = 0;
-    foreach (Transform tile in tileParent.transform)
-    {
-        var script = tile.GetComponent<Tile>();
-        if (script != null && script.index > maxIndex)
-            maxIndex = script.index;
-    }
-
-    // Initialize the list with a default value (-1 indicates undefined)
-    tilesRotationStates = new List<int>(new int[maxIndex + 1]);
-
-    foreach (Transform tile in tileParent.transform)
-    {   
-        var tileScript = tile.GetComponent<Tile>();
-        if (tileScript != null)
+        if (tileToLock != null && !tileToLock.isLocked)
         {
-            float rotation = tileScript.rotation;
-            float zRotation = Mathf.Abs(tile.transform.eulerAngles.z - rotation);
-            int state;
+            tileToLock.SetToGoalState();
+            tileToLock.LockTile();
+            Debug.Log($"🔒 Locked tile {tileToLock.index} at goal rotation.");
 
-            if (Mathf.Approximately(zRotation, 0))
-                state = 0;
-            else if (Mathf.Approximately(zRotation, 90))
-                state = 1;
-            else if (Mathf.Approximately(zRotation, 180))
-                state = 2;
-            else if (Mathf.Approximately(zRotation, 270))
-                state = 3;
-            else
-                state = -1; // -1 indicates undefined or unexpected rotation
-
-            // Store state at the index corresponding to tileScript.index
-            tilesRotationStates[tileScript.index] = state;
-
-            // Logging for debug purposes
-            // Debug.Log($"Tile {tileScript.index}: {state}");
+            nextTileToLockIndex++;
+        }
+        else
+        {
+            Debug.LogWarning("Tile already locked or null!");
         }
     }
 
-}
+    public void PrintTilesRotationState()
+    {
+        if (tileParent == null)
+        {
+            Debug.LogError("Tile parent is not assigned!");
+            return;
+        }
+
+        tilesRotationStates.Clear();
+
+        foreach (Transform tile in tileParent.transform)
+        {
+            var tileScript = tile.GetComponent<Tile>();
+            if (tileScript != null)
+            {
+                float startRotation = tileScript.rotation;
+                float currentRotation = Mathf.Round(tileScript.transform.eulerAngles.z % 360f);
+
+                float diff = (currentRotation - startRotation + 360f) % 360f;
+                int state = Mathf.RoundToInt(diff / 90f) % 4;
+
+                tilesRotationStates.Add(state);
+            }
+        }
+
+        Debug.Log("🧩 Tile Rotation States (correct clicks): [" + string.Join(", ", tilesRotationStates) + "]");
+    }
 }
