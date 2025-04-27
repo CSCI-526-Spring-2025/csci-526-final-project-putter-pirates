@@ -17,6 +17,11 @@ public class Tile : MonoBehaviour
         collider2d = GetComponent<Collider2D>();
         rotation = Mathf.Round(transform.eulerAngles.z % 360f); // Save clean starting rotation
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (isLocked && spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(0.2f, 0.4f, 1f);
+        }
     }
 
     void Update()
@@ -57,4 +62,13 @@ public class Tile : MonoBehaviour
         int state = Mathf.RoundToInt(diff / 90f) % 4;
         return state == goalState;
     }
+
+    public void RefreshColor()
+    {
+        if (isLocked && spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(0.2f, 0.4f, 1f); // Blue if locked
+        }
+    }
+
 }
