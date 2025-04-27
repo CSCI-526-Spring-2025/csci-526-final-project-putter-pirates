@@ -24,7 +24,7 @@ public class ElectricityComponent : MonoBehaviour
     {
         if (isWire)
         {
-            Color unpoweredColor = new Color(0.52f, 0.55f, 0);
+            Color unpoweredColor = new Color(0.57f, 0.6f, 0);
             Color poweredColor = new Color(0.9f, 1, 0);
             gameObject.GetComponent<SpriteRenderer>().color = isCharged ? poweredColor : unpoweredColor;
         }

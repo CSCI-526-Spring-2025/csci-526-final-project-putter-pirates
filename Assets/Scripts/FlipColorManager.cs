@@ -4,12 +4,14 @@ public class FlipColorManager : MonoBehaviour
 {
 
     private Color32 grassRotate = new Color32(222, 162, 74, 255); // #DEA24A
-    private Color32 grassPlay = new Color32(177, 194, 78, 255); // #B1C262
+    // private Color32 grassPlay = new Color32(177, 194, 78, 255); // #B1C262
+    private Color32 grassPlay = new Color32(150, 194, 70, 255); // #B1C262
 
-    private Color32 backgroundRotate = new Color32(220, 206, 157, 255); // #DCCE9D
-    private Color32 backgroundPlay = new Color32(146, 182, 222, 255); // not -> #BADDFB
 
-    private Color32 boundaryRotate = new Color32(176, 164, 109, 255); // #B0A46D
+    private Color32 boundaryRotate = new Color32(220, 206, 157, 255); // #DCCE9D
+    private Color32 backgroundPlay = new Color32(120, 170, 240, 255); // not -> #BADDFB
+
+    private Color32 backgroundRotate = new Color32(176, 164, 109, 255); // #B0A46D
     private Color32 boundaryPlay = new Color32(186, 221, 251, 255); // #BADDFB;
 
     public GameObject[] grass;
