@@ -15,7 +15,7 @@ public class ElectricityComponent : MonoBehaviour
     void Start()
     {
         ElectricityManager = GameObject.Find("ElectricityManager").GetComponent<ElectricityManager>();
-        if (isSource) ElectricityManager.RegisterElectricitySource(this);
+        if(isSource) ElectricityManager.RegisterElectricitySource(this);
         else ElectricityManager.RegisterElectricityComponent(this);
         ElectricityManager.ScheduleElectricityRefreshment();
     }
