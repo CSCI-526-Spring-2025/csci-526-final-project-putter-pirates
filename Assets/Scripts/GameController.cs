@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         // topLayer = GameObject.Find("TopLayer");
         topLayer1 = GameObject.Find("TopLayer1");
         topLayer2 = GameObject.Find("TopLayer2");
-        goalEffect = GameObject.Find("GoalEffect");
+        //goalEffect = GameObject.Find("GoalEffect");
         confettiEffect = GameObject.Find("ConfettiEffect");
         goal = GameObject.Find("Goal");
         if (GameObject.Find("FlipColorManager") != null)
@@ -124,8 +124,10 @@ public class GameController : MonoBehaviour
     public void ResetLevel()
     {
         ball.GetComponent<Ball>().ResetPosition();
-        goalEffect.GetComponent<ParticleSystem>().Clear();
-        goalEffect.SetActive(false);
+        //goalEffect.GetComponent<ParticleSystem>().Clear();
+        //goalEffect.SetActive(false);
+        confettiEffect.GetComponent<ParticleSystem>().Clear();
+        confettiEffect.SetActive(false);
         isGameState = true;
         if (electricityManager != null) electricityManager.ResetButtons();
     }
