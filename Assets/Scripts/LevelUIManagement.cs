@@ -14,9 +14,7 @@ public class LevelUIManagement : MonoBehaviour
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
         
-        if(levelLoader.levelNum > 0){
-            transform.Find("OverlayMenu/LevelNumText").GetComponent<TextMeshProUGUI>().text = "Level " + levelLoader.levelNum;
-        }
+        transform.Find("OverlayMenu/LevelNumText").GetComponent<TextMeshProUGUI>().text = "Level " + levelLoader.levelNum;
 
         transform.Find("OverlayMenu/PrevButton").GetComponent<Button>().interactable = !levelLoader.isLevel0;
         transform.Find("LevelClearPanel/PrevButton").GetComponent<Button>().interactable = !levelLoader.isLevel0;

@@ -12,25 +12,36 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject changeState2Hint;
     [SerializeField] GameObject rotate2Hint;
     [SerializeField] GameObject changeState3Hint;
+    [SerializeField] GameObject UITour;
     [SerializeField] GameObject goodLuckHint;
     [SerializeField] GameObject congratsHint;
     [SerializeField] GameObject tile0;
     [SerializeField] GameObject tile1;
     [SerializeField] GameObject stateSwitchButton;
     [SerializeField] GameObject overlayMenu;
+    [SerializeField] GameObject popupMenu;
     [SerializeField] float waitingTime = 0.5f;
     Vector3 ballStartPosition;
     float[] rotate1Angles = {0, 0};
     float rotateTriggeredTime = 0;
     float resetTriggeredTime = 0;
+    float UITourStartTime = 0;
+    float menuShowTime = 0;
     bool rotateTriggered = false;
     bool resetTriggered = false;
+    bool menuClicked = false;
+    bool closeMenuClicked = false;
+    bool gotIt = false;
 
     enum TutorialState {
-        Rotate1, ChangeState1, Shooting, ResetBall, ChangeState2, Rotate2, ChangeState3, GoodLuck, ReachGoal, Skipped,
+        Rotate1, ChangeState1, Shooting, ResetBall, ChangeState2, Rotate2, ChangeState3, UITour, GoodLuck, ReachGoal, Skipped,
+    }
+    enum UITourState {
+        Wait, ClickMenu, ShowLevelSelect, ShowDotSlider, CloseMenu, ShowHint, End
     }
     [SerializeField]
     TutorialState tutorialState;
+    UITourState uiTourState;
 
     void Start()
     {
@@ -139,11 +150,30 @@ public class TutorialManager : MonoBehaviour
             if(!gameController.isRotateState){
                 // the state is changed back to game
                 changeState3Hint.SetActive(false);
-                goodLuckHint.SetActive(true);
+                UITour.SetActive(true);
 
                 for(int i=0;i<overlayMenu.transform.childCount;i++){
                     overlayMenu.transform.GetChild(i).gameObject.SetActive(true);
                 }
+
+                gameController.enabled = false;
+                ball.GetComponent<Ball>().enabled = false;
+
+                UITourStartTime = Time.time;
+                uiTourState = UITourState.Wait;
+                tutorialState = TutorialState.UITour;
+            }
+        }
+        else if(tutorialState == TutorialState.UITour){
+            UITourUpdate();
+
+            if(uiTourState == UITourState.End) {
+                UITour.SetActive(false);
+                goodLuckHint.SetActive(true);
+
+                EnableLevelSelect();
+                gameController.enabled = true;
+                ball.GetComponent<Ball>().enabled = true;
 
                 tutorialState = TutorialState.GoodLuck;
             }
@@ -164,6 +194,69 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    void UITourUpdate()
+    {
+        if(uiTourState == UITourState.Wait){
+            if(Time.time - UITourStartTime >= waitingTime){
+                UITour.transform.Find("ClickMenuHint").gameObject.SetActive(true);
+                menuClicked = false;
+                uiTourState = UITourState.ClickMenu;
+            }
+        }
+        else if(uiTourState == UITourState.ClickMenu){
+            if(menuClicked){
+                UITour.transform.Find("ClickMenuHint").gameObject.SetActive(false);
+                UITour.transform.Find("ShowLevelSelectHint").gameObject.SetActive(true);
+
+                menuShowTime = Time.time;
+                uiTourState = UITourState.ShowLevelSelect;
+            }
+        }
+        else if(uiTourState == UITourState.ShowLevelSelect){
+            if(gotIt){
+                UITour.transform.Find("ShowLevelSelectHint").gameObject.SetActive(false);
+                UITour.transform.Find("ShowDotSliderHint").gameObject.SetActive(true);
+
+                gotIt = false;
+                
+                uiTourState = UITourState.ShowDotSlider;
+            }
+        }
+        else if(uiTourState == UITourState.ShowDotSlider){
+            if(gotIt){
+                UITour.transform.Find("ShowDotSliderHint").gameObject.SetActive(false);
+                UITour.transform.Find("CloseMenuHint").gameObject.SetActive(true);
+
+                closeMenuClicked = false;
+                
+                uiTourState = UITourState.CloseMenu;
+            }
+        }
+        else if(uiTourState == UITourState.CloseMenu){
+            if(closeMenuClicked){
+                UITour.transform.Find("CloseMenuHint").gameObject.SetActive(false);
+                UITour.transform.Find("ShowHintHint").gameObject.SetActive(true);
+                
+                gotIt = false;
+
+                uiTourState = UITourState.ShowHint;
+            }
+        }
+        else if(uiTourState == UITourState.ShowHint){
+            if(gotIt){
+                UITour.transform.Find("ShowHintHint").gameObject.SetActive(false);
+                
+                uiTourState = UITourState.End;
+            }
+        }
+    }
+
+    void EnableLevelSelect()
+    {
+        for(int i=1;i<=12;i++) 
+            popupMenu.transform.Find($"Level{i}").gameObject.GetComponent<Button>().interactable = true;
+    }
+
     public void SkipTutorial()
     {
         tutorialState = TutorialState.Skipped;
@@ -172,5 +265,21 @@ public class TutorialManager : MonoBehaviour
         for(int i=0;i<overlayMenu.transform.childCount;i++){
             overlayMenu.transform.GetChild(i).gameObject.SetActive(true);
         }
+        EnableLevelSelect();
+    }
+
+    public void OnMenuClicked()
+    {
+        menuClicked = true;
+    }
+
+    public void OnGotItBtnClicked()
+    {
+        gotIt = true;
+    }
+
+    public void OnCloseMenuClicked()
+    {
+        closeMenuClicked = true;
     }
 }
