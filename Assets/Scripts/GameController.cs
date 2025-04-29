@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     GameObject topLayer1;
     GameObject topLayer2;
     GameObject goalEffect;
+    GameObject confettiEffect;
+    Quaternion confettiQuat;
     GameObject goal;
     Trajectory trajectory;
     LevelUIManagement levelUIManagement;
@@ -25,7 +27,8 @@ public class GameController : MonoBehaviour
         // topLayer = GameObject.Find("TopLayer");
         topLayer1 = GameObject.Find("TopLayer1");
         topLayer2 = GameObject.Find("TopLayer2");
-        goalEffect = GameObject.Find("GoalEffect");
+        //goalEffect = GameObject.Find("GoalEffect");
+        confettiEffect = GameObject.Find("ConfettiEffect");
         goal = GameObject.Find("Goal");
         if (GameObject.Find("FlipColorManager") != null)
         {
@@ -48,7 +51,9 @@ public class GameController : MonoBehaviour
             topLayer1.SetActive(isRotateState);
             topLayer2.SetActive(isRotateState);
         }
-        goalEffect.SetActive(!isGameState);
+        // goalEffect.SetActive(!isGameState);
+        confettiEffect.SetActive(false);
+        confettiQuat = confettiEffect.transform.rotation;
 
     }
 
@@ -63,6 +68,8 @@ public class GameController : MonoBehaviour
 
         // R key resets the ball
         if (Input.GetKeyDown(KeyCode.R) && isGameState) ResetLevel();
+
+        confettiEffect.transform.rotation = confettiQuat;
     }
 
     public void Sucess()
@@ -70,7 +77,8 @@ public class GameController : MonoBehaviour
         // would be called by Goal as the ball got to the goal
         ball.GetComponent<Ball>().Freeze();
         ball.SetActive(false);
-        goalEffect.SetActive(true);
+        // goalEffect.SetActive(true);
+        confettiEffect.SetActive(true);
         levelUIManagement.StartLevelClearUIRoutine();
         isGameState = false;
 
@@ -116,8 +124,10 @@ public class GameController : MonoBehaviour
     public void ResetLevel()
     {
         ball.GetComponent<Ball>().ResetPosition();
-        goalEffect.GetComponent<ParticleSystem>().Clear();
-        goalEffect.SetActive(false);
+        //goalEffect.GetComponent<ParticleSystem>().Clear();
+        //goalEffect.SetActive(false);
+        confettiEffect.GetComponent<ParticleSystem>().Clear();
+        confettiEffect.SetActive(false);
         isGameState = true;
         if (electricityManager != null) electricityManager.ResetButtons();
     }
