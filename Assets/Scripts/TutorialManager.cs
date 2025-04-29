@@ -27,7 +27,7 @@ public class TutorialManager : MonoBehaviour
     bool resetTriggered = false;
 
     enum TutorialState {
-        Rotate1, ChangeState1, Shooting, ResetBall, ChangeState2, Rotate2, ChangeState3, GoodLuck, ReachGoal,
+        Rotate1, ChangeState1, Shooting, ResetBall, ChangeState2, Rotate2, ChangeState3, GoodLuck, ReachGoal, Skipped,
     }
     [SerializeField]
     TutorialState tutorialState;
@@ -156,11 +156,21 @@ public class TutorialManager : MonoBehaviour
                 tutorialState = TutorialState.ReachGoal;
             }
         }
-        else if(tutorialState == TutorialState.ReachGoal){
+        else if(tutorialState == TutorialState.ReachGoal || tutorialState == TutorialState.Skipped){
 
         }
         else{
             Debug.LogError($"Unknown tutorial state {tutorialState}");
+        }
+    }
+
+    public void SkipTutorial()
+    {
+        tutorialState = TutorialState.Skipped;
+        rotate1Hint.SetActive(false);
+        gameController.enabled = true;
+        for(int i=0;i<overlayMenu.transform.childCount;i++){
+            overlayMenu.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
 }
