@@ -5472,6 +5472,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4334587343007837491, guid: 78a91d413bfbb43278fc51bfa4e4c80d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6500953494938509521, guid: 78a91d413bfbb43278fc51bfa4e4c80d, type: 3}
       propertyPath: m_Name
       value: GoalHole

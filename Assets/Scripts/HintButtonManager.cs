@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class HintButtonManager : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class HintButtonManager : MonoBehaviour
     private int shotCount = 0;
     private bool hintUnlocked = false;
     public TileInitializer tileInitializer;
+    //public TextMeshProUGUI textMeshPro;
+
+
+    private Color32 red = new Color32(255, 100, 100, 255);
+    private Color32 white = new Color32(255, 255, 255, 255);
+    //private Color32 black = new Color32(0, 0, 0, 255);
 
     void Start()
     {
@@ -45,6 +52,8 @@ public class HintButtonManager : MonoBehaviour
 
     IEnumerator PulseHintButton()
     {
+        hintButton.GetComponent<Image>().color = red;
+        //textMeshPro.color = white;
         Transform buttonTransform = hintButton.transform;
         Vector3 originalScale = buttonTransform.localScale;
         float pulseSpeed = 4f;
@@ -63,6 +72,8 @@ public class HintButtonManager : MonoBehaviour
         }
 
         buttonTransform.localScale = originalScale;
+        hintButton.GetComponent<Image>().color = white;
+        //textMeshPro.color = black;
     }
 
     public void OnHelpButtonClicked()
