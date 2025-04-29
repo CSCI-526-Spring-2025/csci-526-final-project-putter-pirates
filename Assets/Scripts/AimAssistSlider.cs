@@ -28,7 +28,7 @@ public class AimAssistSlider : MonoBehaviour
         {
             label.text = v.ToString();
             PlayerPrefs.SetFloat("AimAssistValue", v);
-            gameAnalytics.SetAim(v);
+            if(gameAnalytics) gameAnalytics.SetAim(v);
             PlayerPrefs.Save(); // Save persistently
         });
     }
