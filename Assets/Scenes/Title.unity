@@ -2271,6 +2271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defualtNumDot: 10
+  slider: {fileID: 461294306}
 --- !u!4 &693589337
 Transform:
   m_ObjectHideFlags: 0
