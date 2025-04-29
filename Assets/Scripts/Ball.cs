@@ -100,8 +100,8 @@ public class Ball : MonoBehaviour
             FindObjectOfType<TileInitializer>().PrintTilesRotationState();
             GameAnalytics.instance.AppendStateData();
 
-
-            FindObjectOfType<HintButtonManager>().OnBallShot();
+            HintButtonManager hintButtonManager = FindFirstObjectByType<HintButtonManager>();
+            if(hintButtonManager != null) hintButtonManager.OnBallShot();
 
             // GameAnalytics.instance.PrintTileStates();
 
