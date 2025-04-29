@@ -46,6 +46,12 @@ public class LevelUIManagement : MonoBehaviour
     {
         levelLoader.ReloadCurrentLevel();
     }
+
+    public void ResetBall()
+    {
+        gameController.ResetLevel();
+    }
+    
     public void LoadNextLevel(bool afterLevelCleared=false)
     {
         if(afterLevelCleared){} //not skipped

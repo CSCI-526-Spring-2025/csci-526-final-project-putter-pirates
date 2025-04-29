@@ -18,6 +18,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject tile0;
     [SerializeField] GameObject tile1;
     [SerializeField] GameObject stateSwitchButton;
+    [SerializeField] GameObject resetButton;
     [SerializeField] GameObject overlayMenu;
     [SerializeField] GameObject popupMenu;
     [SerializeField] float waitingTime = 0.5f;
@@ -26,10 +27,10 @@ public class TutorialManager : MonoBehaviour
     float rotateTriggeredTime = 0;
     float resetTriggeredTime = 0;
     float UITourStartTime = 0;
-    float menuShowTime = 0;
     bool rotateTriggered = false;
     bool resetTriggered = false;
     bool menuClicked = false;
+    bool resetBtnClicked = false;
     bool closeMenuClicked = false;
     bool gotIt = false;
 
@@ -96,16 +97,19 @@ public class TutorialManager : MonoBehaviour
                 resetBallHint.SetActive(true);
 
                 ball.GetComponent<Ball>().enabled = false;
+                resetButton.SetActive(true);
                 
                 resetTriggered = false;
+                resetBtnClicked = false;
                 tutorialState = TutorialState.ResetBall;
             }
         }
         else if(tutorialState == TutorialState.ResetBall){
-            if(Input.GetKeyDown(KeyCode.R)){
+            if(Input.GetKeyDown(KeyCode.R) || resetBtnClicked){
                 gameController.ResetLevel();
                 resetTriggeredTime = Time.time;
                 resetTriggered = true;
+                resetBtnClicked = false;
 
                 resetBallHint.SetActive(false);
             }
@@ -208,7 +212,6 @@ public class TutorialManager : MonoBehaviour
                 UITour.transform.Find("ClickMenuHint").gameObject.SetActive(false);
                 UITour.transform.Find("ShowLevelSelectHint").gameObject.SetActive(true);
 
-                menuShowTime = Time.time;
                 uiTourState = UITourState.ShowLevelSelect;
             }
         }
@@ -266,6 +269,11 @@ public class TutorialManager : MonoBehaviour
             overlayMenu.transform.GetChild(i).gameObject.SetActive(true);
         }
         EnableLevelSelect();
+    }
+
+    public void OnResetButtonClicked()
+    {
+        resetBtnClicked = true;
     }
 
     public void OnMenuClicked()
