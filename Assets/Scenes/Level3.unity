@@ -2264,6 +2264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252483629}
     m_Modifications:
+    - target: {fileID: 2268256334045955381, guid: 85af60353668047a6af3dc011ec71138, type: 3}
+      propertyPath: ShapeModule.randomPositionAmount
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 1213775252212400728, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_Name
       value: WindZone2 (1)
@@ -2290,11 +2294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.69375
       objectReference: {fileID: 0}
     - target: {fileID: 6517472360910613977, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_LocalScale.x
@@ -2343,10 +2347,6 @@ PrefabInstance:
     - target: {fileID: 6517472360910613977, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2268256334045955381, guid: 85af60353668047a6af3dc011ec71138, type: 3}
-      propertyPath: ShapeModule.randomPositionAmount
-      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7019,6 +7019,14 @@ PrefabInstance:
       propertyPath: m_UseColliderMask
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.80835086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.922331
+      objectReference: {fileID: 0}
     - target: {fileID: 6517472360910613977, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.51968986
@@ -7089,7 +7097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7378799326891344683, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7378799326891344683, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: ShapeModule.randomPositionAmount
@@ -7287,11 +7295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7378799326891344683, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7378799326891344683, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 2.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7588,7 +7596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7378799326891344683, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 2.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

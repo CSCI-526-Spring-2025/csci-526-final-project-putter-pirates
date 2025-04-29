@@ -5723,8 +5723,8 @@ Transform:
   m_GameObject: {fileID: 1251014177}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.89729655, y: 0.53551435, z: 0}
-  m_LocalScale: {x: 0.11426946, y: 0.06220508, z: 0.1}
+  m_LocalPosition: {x: 0.011, y: -0.333, z: 0}
+  m_LocalScale: {x: 0.9420981, y: 1.3, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 406011530}
@@ -5815,7 +5815,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1251014177}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -5889,7 +5889,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5942,7 +5942,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5996,7 +5996,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+      maxColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 0.19607843}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6060,7 +6060,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6643,7 +6643,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -13115,6 +13115,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1192041017}
     m_Modifications:
+    - target: {fileID: 2555968477804970713, guid: 2bb8d93ad065549fdac945b6456c937b, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5826977558182512346, guid: 2bb8d93ad065549fdac945b6456c937b, type: 3}
       propertyPath: m_Name
       value: Windzone
