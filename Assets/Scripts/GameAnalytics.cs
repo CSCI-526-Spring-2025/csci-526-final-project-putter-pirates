@@ -19,10 +19,6 @@ public class GameAnalytics : MonoBehaviour
     void Awake()
     {
         levelNum = SceneManager.GetActiveScene().buildIndex - 1;
-        // if(levelNum == 13){
-        //     // update when more levels are added
-        //     levelNum = 0;
-        // }
         tileinitializer = Object.FindFirstObjectByType<TileInitializer>();
         databaseURL = $"https://putterdatabase-default-rtdb.firebaseio.com/analytics/level{levelNum}/";
         Debug.Log("🎯 Level " + levelNum);
@@ -32,8 +28,6 @@ public class GameAnalytics : MonoBehaviour
         }
     }
 
-
-    // 🔹 Track each shot during gameplay
     public void TrackShot()
     {
         shotCount++;
@@ -50,8 +44,6 @@ public class GameAnalytics : MonoBehaviour
     {
         StartCoroutine(IncrementHelpCount());
     }
-
-    // 🔹 Append the final shot count to Firebase at the end of the game
     public void AppendShotData()
     {
         StartCoroutine(AppendShotCount(shotCount));
@@ -72,11 +64,11 @@ public class GameAnalytics : MonoBehaviour
 
         if (postRequest.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("✅ New shot count appended successfully!");
+            Debug.Log("New shot count appended successfully!");
         }
         else
         {
-            Debug.LogError("❌ Error appending shot count: " + postRequest.error);
+            Debug.LogError("Error appending shot count: " + postRequest.error);
         }
     }
 
@@ -89,10 +81,44 @@ public class GameAnalytics : MonoBehaviour
     {
         StartCoroutine(AppendAimAssist());
     }
-private IEnumerator AppendAimAssist()
-{
-        string postURL = databaseURL + "aim.json";
-        string json = "{\"aim\": " + aim + "}";
+    private IEnumerator AppendAimAssist()
+    {
+            string postURL = databaseURL + "aim.json";
+            string json = "{\"aim\": " + aim + "}";
+
+            UnityWebRequest postRequest = new UnityWebRequest(postURL, "POST");
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+            postRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            postRequest.downloadHandler = new DownloadHandlerBuffer();
+            postRequest.SetRequestHeader("Content-Type", "application/json");
+
+            yield return postRequest.SendWebRequest();
+
+            if (postRequest.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("New aim assit appended successfully!");
+            }
+            else
+            {
+                Debug.LogError("Error appending shot count: " + postRequest.error);
+            }
+    }
+
+    private IEnumerator AppendAllStates()
+    {
+        if (tileinitializer == null || tileinitializer.tilesRotationStates == null)
+        {
+            Debug.LogWarning("⚠️ Tileinitializer or tilesRotationStates not assigned!");
+            yield break;
+        }
+
+        List<int> tilesRotationStates = tileinitializer.tilesRotationStates;
+        string states = string.Join(", ", tilesRotationStates);
+        Debug.Log("🧩 Tile Rotation States: [" + states + "]");
+
+        string postURL = databaseURL + "state.json";
+
+        string json = "{\"state\":[" + states + "]}";
 
         UnityWebRequest postRequest = new UnityWebRequest(postURL, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
@@ -104,154 +130,147 @@ private IEnumerator AppendAimAssist()
 
         if (postRequest.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("✅ New aim assit appended successfully!");
+            // Debug.Log("Tile rotation states appended successfully!");
         }
         else
         {
-            Debug.LogError("❌ Error appending shot count: " + postRequest.error);
+            Debug.LogError("Error appending rotation states: " + postRequest.error);
         }
-}
-
-private IEnumerator AppendAllStates()
-{
-    if (tileinitializer == null || tileinitializer.tilesRotationStates == null)
-    {
-        Debug.LogWarning("⚠️ Tileinitializer or tilesRotationStates not assigned!");
-        yield break;
     }
 
-    List<int> tilesRotationStates = tileinitializer.tilesRotationStates;
-    string states = string.Join(", ", tilesRotationStates);
-    Debug.Log("🧩 Tile Rotation States: [" + states + "]");
-
-    string postURL = databaseURL + "state.json";
-
-    // Proper JSON array formatting
-    string json = "{\"state\":[" + states + "]}";
-
-    UnityWebRequest postRequest = new UnityWebRequest(postURL, "POST");
-    byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
-    postRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
-    postRequest.downloadHandler = new DownloadHandlerBuffer();
-    postRequest.SetRequestHeader("Content-Type", "application/json");
-
-    yield return postRequest.SendWebRequest();
-
-    if (postRequest.result == UnityWebRequest.Result.Success)
+    private IEnumerator IncrementHelpCount()
     {
-        // Debug.Log("Tile rotation states appended successfully!");
-    }
-    else
-    {
-        Debug.LogError("Error appending rotation states: " + postRequest.error);
-    }
-}
+        string getURL = databaseURL + "help.json";
+        Debug.Log($"Request URL: {getURL}");
 
-private IEnumerator IncrementHelpCount()
-{
-    string getURL = databaseURL + "help.json";
-    Debug.Log($"Request URL: {getURL}");
+        UnityWebRequest getRequest = UnityWebRequest.Get(getURL);
+        var operation = getRequest.SendWebRequest();
 
-    UnityWebRequest getRequest = UnityWebRequest.Get(getURL);
-    var operation = getRequest.SendWebRequest();
+        bool isDone = false;
+        operation.completed += (_) => isDone = true;
 
-    bool isDone = false;
-    operation.completed += (_) => isDone = true;
+        while (!isDone)
+        {
+            yield return null;
+        }
 
-    while (!isDone)
-    {
-        yield return null;
-    }
+        if (getRequest.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error fetching help count: " + getRequest.error);
+            yield break;
+        }
 
-    if (getRequest.result != UnityWebRequest.Result.Success)
-    {
-        Debug.LogError("Error fetching help count: " + getRequest.error);
-        yield break;
-    }
+        int currentHelpCount= 0;
+        string resultText = getRequest.downloadHandler.text.Trim();
 
-    int currentHelpCount= 0;
-    string resultText = getRequest.downloadHandler.text.Trim();
-    // Debug.Log($"Firebase response: '{resultText}'");
+        if (resultText != "null" && int.TryParse(resultText, out currentHelpCount))
+        {
+            currentHelpCount += 1;
+            // Debug.Log($"Incremented HelpCount to {currentHelpCount}");
+        }
+        else
+        {
+            currentHelpCount = 0;
+            // Debug.Log($"Initialized HelpCount to {currentHelpCount}");
+        }
 
-    if (resultText != "null" && int.TryParse(resultText, out currentHelpCount))
-    {
-        currentHelpCount += 1;
-        // Debug.Log($"Incremented HelpCount to {currentHelpCount}");
-    }
-    else
-    {
-        currentHelpCount = 0;
-        // Debug.Log($"Initialized HelpCount to {currentHelpCount}");
+        string json = currentHelpCount.ToString();
+        UnityWebRequest putRequest = UnityWebRequest.Put(getURL, json);
+        putRequest.SetRequestHeader("Content-Type", "application/json");
+
+        var putOperation = putRequest.SendWebRequest();
+        isDone = false;
+        putOperation.completed += (_) => isDone = true;
+
+        while (!isDone)
+        {
+            yield return null;
+        }
+
+        if (putRequest.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Help count updated successfully to: " + currentHelpCount);
+        }
+        else
+        {
+            Debug.LogError("Error updating help count: " + putRequest.error);
+        }
     }
 
-    string json = currentHelpCount.ToString();
-    UnityWebRequest putRequest = UnityWebRequest.Put(getURL, json);
-    putRequest.SetRequestHeader("Content-Type", "application/json");
 
-    var putOperation = putRequest.SendWebRequest();
-    isDone = false;
-    putOperation.completed += (_) => isDone = true;
-
-    while (!isDone)
+    public void TrackGoalReached()
     {
-        yield return null;
+        StartCoroutine(AppendCompletionData());
+        shotCount = 0;
+
     }
 
-    if (putRequest.result == UnityWebRequest.Result.Success)
+    private IEnumerator AppendCompletionData()
     {
-        Debug.Log("Help count updated successfully to: " + currentHelpCount);
-    }
-    else
-    {
-        Debug.LogError("Error updating help count: " + putRequest.error);
-    }
-}
+        if (tileinitializer == null || tileinitializer.tilesRotationStates == null)
+        {
+            Debug.LogWarning("Tileinitializer or tilesRotationStates not assigned!");
+            yield break;
+        }
 
+        List<int> tilesRotationStates = tileinitializer.tilesRotationStates;
+        string states = string.Join(", ", tilesRotationStates);
+        Debug.Log("🏁 Goal Reached - State: [" + states + "], Shots: " + shotCount);
 
-public void TrackGoalReached()
-{
-    StartCoroutine(AppendCompletionData());
-    shotCount = 0;
+        string postURL = databaseURL + "completed.json";
 
-}
+        string json = $"{{\"state\":[{states}], \"shots\":{shotCount}}}";
 
-private IEnumerator AppendCompletionData()
-{
-    if (tileinitializer == null || tileinitializer.tilesRotationStates == null)
-    {
-        Debug.LogWarning("Tileinitializer or tilesRotationStates not assigned!");
-        yield break;
-    }
+        UnityWebRequest postRequest = new UnityWebRequest(postURL, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+        postRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        postRequest.downloadHandler = new DownloadHandlerBuffer();
+        postRequest.SetRequestHeader("Content-Type", "application/json");
 
-    List<int> tilesRotationStates = tileinitializer.tilesRotationStates;
-    string states = string.Join(", ", tilesRotationStates);
-    Debug.Log("🏁 Goal Reached - State: [" + states + "], Shots: " + shotCount);
+        yield return postRequest.SendWebRequest();
 
-    string postURL = databaseURL + "completed.json";
+        if (postRequest.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Goal data appended successfully!");
+        }
+        else
+        {
+            Debug.LogError("Error appending goal data: " + postRequest.error);
+        }
 
-    // Construct JSON with both state and shots
-    string json = $"{{\"state\":[{states}], \"shots\":{shotCount}}}";
-
-    UnityWebRequest postRequest = new UnityWebRequest(postURL, "POST");
-    byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
-    postRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
-    postRequest.downloadHandler = new DownloadHandlerBuffer();
-    postRequest.SetRequestHeader("Content-Type", "application/json");
-
-    yield return postRequest.SendWebRequest();
-
-    if (postRequest.result == UnityWebRequest.Result.Success)
-    {
-        Debug.Log("Goal data appended successfully!");
-    }
-    else
-    {
-        Debug.LogError("Error appending goal data: " + postRequest.error);
+        // Optionally reset shot count if needed
+        shotCount = 0;
     }
 
-    // Optionally reset shot count if needed
-    shotCount = 0;
-}
+    public void TrackSkipped()
+    {
+        StartCoroutine(AppendSkipCount(shotCount));
+    }
+
+    private IEnumerator AppendSkipCount(int finalShotCount)
+    {
+        string postURL = databaseURL + "skip.json"; // Save under skip.json inside level folder
+        string json = "{\"skip\": " + finalShotCount + "}";
+
+        UnityWebRequest postRequest = new UnityWebRequest(postURL, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+        postRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        postRequest.downloadHandler = new DownloadHandlerBuffer();
+        postRequest.SetRequestHeader("Content-Type", "application/json");
+
+        yield return postRequest.SendWebRequest();
+
+        if (postRequest.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log($"🎯 Skip data appended successfully! Shots before skip: {finalShotCount}");
+        }
+        else
+        {
+            Debug.LogError("❌ Error appending skip data: " + postRequest.error);
+        }
+    }
+
+
 
 
 }

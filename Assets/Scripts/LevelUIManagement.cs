@@ -48,15 +48,14 @@ public class LevelUIManagement : MonoBehaviour
     {
         levelLoader.ReloadCurrentLevel();
     }
-
     public void LoadNextLevel(bool afterLevelCleared=false)
     {
         if(afterLevelCleared){} //not skipped
-        else {} // skipped
-        // GameAnalytics.instance.TrackSkipped();
+        else {
+            GameAnalytics.instance.TrackSkipped();
+        } // skipped
         levelLoader.LoadNext();
     }
-
     public void LoadPreviousLevel()
     {
         levelLoader.LoadPrev();
