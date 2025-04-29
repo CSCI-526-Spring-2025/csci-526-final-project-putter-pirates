@@ -1297,6 +1297,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindZone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6883612
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.94018257
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.353
+      objectReference: {fileID: 0}
     - target: {fileID: 5783537299843420540, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_Size.y
       value: 1.458894
@@ -1375,6 +1387,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9914928
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1246487
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115237656383787748, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.408
+      objectReference: {fileID: 0}
     - target: {fileID: 5783537299843420540, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: m_Size.y
       value: 1.4675739
@@ -1429,7 +1453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7378799326891344683, guid: 8a19753c851cf4f0b81ec7a48654b1bf, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 2.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
